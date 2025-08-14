@@ -1,7 +1,8 @@
+/* src/App.css */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #111;
+  background-color: #090617;
   color: white;
 }
 
@@ -10,15 +11,13 @@ body {
   width: 100%;
 }
 
+/* --- Navbar Styles --- */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Pushes logo to left, menu to right */
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(26, 26, 26, 0.5); /* Semi-transparent background */
-  backdrop-filter: blur(10px);       /* Frosted blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
   position: sticky;
   top: 0;
   width: 100%;
@@ -26,9 +25,17 @@ body {
   z-index: 1000;
 }
 
+/* Hide the hamburger icon on desktop */
+.hamburger {
+  display: none;
+}
+
 .nav-links {
   display: flex;
   gap: 1.5rem;
+  list-style-type: none;
+  margin: 0; /* Add this to remove default margin */
+  padding: 0; /* Add this to remove default padding */
 }
 
 .nav-links a {
@@ -37,6 +44,13 @@ body {
   font-weight: 500;
   position: relative;
   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.1px);
+  -webkit-backdrop-filter: blur(5.1px);
+  border: 1px solid rgba(255, 255, 255, 0.41);
+  padding: 16px;
 }
 
 /* Glow on hover */
@@ -45,7 +59,7 @@ body {
   text-shadow: 0 0 10px #ff77ff, 0 0 20px #ff77ff;
 }
 
-/* Hero Section */
+/* --- Hero Section --- */
 .hero {
   text-align: center;
   padding: 6rem 2rem;
@@ -65,4 +79,98 @@ body {
   color: #ccc;
   max-width: 600px;
   margin: 0 auto;
+}
+/* --- Add this to your nav-links a styles --- */
+.nav-links a.active {
+  /* This is the style for the selected link */
+  color: #ff77ff; /* Or any other color you prefer */
+  text-shadow: 0 0 10px #ff77ff, 0 0 20px #ff77ff;
+  border-bottom: 2px solid #ff77ff; /* Optional: adds an underline effect */
+}
+
+/* Ensure the hover effect still works */
+.nav-links a:hover {
+  color: #ff77ff;
+  text-shadow: 0 0 10px #ff77ff, 0 0 20px #ff77ff;
+}
+
+/* You might want to adjust the base link color for better contrast */
+.nav-links a {
+  /* Add a default color for non-active links */
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  /* ... rest of your styles ... */
+}
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  /* Display the hamburger icon on mobile */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001; /* Higher z-index to be on top of the menu */
+  }
+  
+  .hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Animate the hamburger icon to an 'X' */
+  .hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Hide the nav links on mobile by default */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background-color: #2b283d; /* Adjust color for a better look */
+    backdrop-filter: blur(10px);
+    position: fixed; /* Use fixed for full-screen overlay */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding-top: 5rem; /* Add padding to push content below navbar */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+
+  /* Show the menu when the 'open' class is applied */
+  .nav-links.open {
+    display: flex;
+    transform: translateX(0); /* Slide into view */
+  }
+  
+  .nav-links li {
+    margin: 1.5rem 0; /* Add more vertical spacing for mobile */
+  }
+
+  .nav-links a {
+    background: none; /* Remove glass effect from mobile links */
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem; /* Adjust padding */
+    font-size: 1.5rem; /* Make font size larger for readability */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add a subtle separator */
+  }
 }
