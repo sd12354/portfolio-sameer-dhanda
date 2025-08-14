@@ -1,0 +1,72 @@
+/* src/components/contact.css */
+.contact-form {
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #ff4da6;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #ff4da6;
+  box-shadow: 0 0 10px rgba(255, 77, 166, 0.5);
+}
+
+.submit-btn {
+  background-color: #ff4da6;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #e53995;
+  box-shadow: 0 0 15px rgba(255, 77, 166, 0.8);
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+}

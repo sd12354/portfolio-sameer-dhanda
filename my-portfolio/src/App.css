@@ -32,13 +32,14 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
   list-style-type: none;
   margin: 0; /* Add this to remove default margin */
   padding: 0; /* Add this to remove default padding */
 }
 
 .nav-links a {
+  font-family: "Google Sans Code", monospace;
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -51,6 +52,7 @@ body {
   -webkit-backdrop-filter: blur(5.1px);
   border: 1px solid rgba(255, 255, 255, 0.41);
   padding: 16px;
+  font-size: .85rem;
 }
 
 /* Glow on hover */
@@ -173,4 +175,43 @@ body {
     font-size: 1.5rem; /* Make font size larger for readability */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add a subtle separator */
   }
+}
+
+/* --- Page Section Styling --- */
+.page-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  min-height: 100vh; /* Optional: Make each section take up at least the full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero Section (Home) */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;/* Increase bottom padding to make space for the crescent */
+  position: relative;
+  overflow: hidden; /* Hide anything that overflows the section */
+  min-height: 60vh; /* Ensure the hero section is tall enough */
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #ff4da6;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+p {
+  font-family: "Google Sans Code", monospace;
 }
