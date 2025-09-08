@@ -1,0 +1,38 @@
+/* src/components/sociallinks.css */
+.social-links {
+  position: fixed; /* This makes it sticky */
+  bottom: 2rem;
+  left: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.social-links a {
+  color: #4dff91;
+  font-size: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(255, 77, 166, 0.5));
+}
+
+.social-links a:hover {
+  transform: scale(1.2); /* Cool hover effect */
+  color: #ff77ff;
+  filter: drop-shadow(0 0 10px rgba(255, 119, 255, 0.8));
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+  .social-links {
+    bottom: 1rem;
+    left: 1rem;
+    gap: 1rem;
+  }
+  .social-links a {
+    font-size: 1.5rem;
+  }
+}

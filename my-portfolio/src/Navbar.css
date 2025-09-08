@@ -1,0 +1,16 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar a {
+  font-weight: 300;
+  font-family: "Source Code Pro", monospace;
+}
+
+.react-icons {
+  vertical-align: middle;
+  font-size: 2rem;
+}
+h1 {
+  color: white;
+}

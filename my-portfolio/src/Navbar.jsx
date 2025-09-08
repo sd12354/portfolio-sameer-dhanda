@@ -1,10 +1,12 @@
-// src/components/Navbar.jsx
 import React from 'react';
-
+import './Projects.css'
+import { FaHome } from 'react-icons/fa';
+import { IoPersonCircle } from 'react-icons/io5';
+import { FaProjectDiagram, FaInfo, FaRocketchat } from 'react-icons/fa';
 const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
   return (
     <nav className="navbar">
-      <h1 className="logo">Sameer Dhanda</h1>
+      <h1> &#123; SD &#125;</h1>
       <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
         <li>
           <a
@@ -15,7 +17,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
               toggleMenu();
             }}
           >
-            Home
+            Home <FaHome/>
           </a>
         </li>
         <li>
@@ -27,7 +29,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
               toggleMenu();
             }}
           >
-            About Me
+            About Me <IoPersonCircle/>
           </a>
         </li>
         <li>
@@ -39,7 +41,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
               toggleMenu();
             }}
           >
-            Projects
+            Projects <FaProjectDiagram/>
           </a>
         </li>
         <li>
@@ -51,7 +53,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
               toggleMenu();
             }}
           >
-            Contact
+            Contact <FaRocketchat/>
           </a>
         </li>
       </ul>

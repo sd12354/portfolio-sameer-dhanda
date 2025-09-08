@@ -4,8 +4,10 @@ import './App.css';
 import Navbar from './Navbar';
 import Home from './Home';
 import About from './About';
+import SkillsMarquee from './Skills'; // <-- New import
 import Projects from './Projects';
 import Contact from './Contact';
+import SocialLinks from './SocialLinks'; 
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +40,7 @@ function App() {
   }, []);
 
   return (
+    <div class="gradient">
     <div className="container">
       <Navbar
         isMenuOpen={isMenuOpen}
@@ -47,8 +50,11 @@ function App() {
       />
       <Home />
       <About />
+      <SkillsMarquee />
       <Projects />
       <Contact />
+      <SocialLinks />
+    </div>
     </div>
   );
 }
