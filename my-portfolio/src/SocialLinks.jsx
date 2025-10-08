@@ -2,7 +2,7 @@
 import React from 'react';
 // Changed the import line to get FaAdobe from fa6
 import { FaLinkedin, FaGithub, FaInstagram, FaYoutube} from 'react-icons/fa';
-import './sociallinks.css';
+import './Sociallinks.css';
 import { BiLogoAdobe } from 'react-icons/bi';
 const socialLinks = [
   {

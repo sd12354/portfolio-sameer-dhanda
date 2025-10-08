@@ -7,7 +7,8 @@ import About from './About';
 import SkillsMarquee from './Skills'; // <-- New import
 import Projects from './Projects';
 import Contact from './Contact';
-import SocialLinks from './SocialLinks'; 
+import SocialLinks from './SocialLinks';
+import './Sociallinks.css'; 
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
