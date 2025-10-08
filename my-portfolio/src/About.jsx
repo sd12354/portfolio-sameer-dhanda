@@ -43,7 +43,7 @@ function About() {
           </div>
         </div>
         <div className="grid-item left-bottom-wrapper">
-          <div className="left-bottom-part part-1">
+          <div className="left-bottom-part part-1" data-aos="fade-up">
             <h3>Skills</h3>
             <ul>
               <li>React.js</li>
@@ -56,7 +56,7 @@ function About() {
           </div>
           <div className="left-bottom-part part-2">
             <h3>Interests</h3>
-            <ul>
+            <ul data-aos="fade-up">
               <li>Web Development</li>
               <li>UI/UX Design</li>
               <li>Photography</li>
@@ -66,7 +66,7 @@ function About() {
         </div>
         {/* --- New Row for Portfolio and Music --- */}
         <div className="grid-item new-row-wrapper">
-          <div className="adobe-portfolio">
+          <div className="adobe-portfolio" data-aos="fade-up">
             <h3>Adobe Portfolio <BiLogoAdobe></BiLogoAdobe></h3>
             <iframe
               src="https://sameerdhanda.myportfolio.com/"
@@ -77,7 +77,7 @@ function About() {
               title="Adobe Portfolio"
             ></iframe>
           </div>
-          <div className="apple-music">
+          <div className="apple-music" data-aos="fade-right">
             <h3>Currently Listening <BsMusicNoteList></BsMusicNoteList></h3>
             <iframe 
               src="https://embed.music.apple.com/us/album/the-last-wun/1830597627"

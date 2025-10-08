@@ -6,7 +6,7 @@ const projectData = [
     id: 1,
     title: 'Double Edge',
     description: 'Double Edge is a web application which serves as a way to visualize and analyze the effects of California wildfires and the impact they have on the housing market you can check it out',
-    image: '/double.png',
+    image: 'double.png',
   },
   {
     id: 2,
@@ -24,19 +24,19 @@ const projectData = [
     id: 4,
     title: 'Hades AIO',
     description: 'A data visualization tool that renders complex datasets into interactive charts and graphs. Used D3.js and React.',
-    image: '/public/hades.png',
+    image: 'hades.png',
   },
   {
     id: 5,
     title: 'Syntis',
     description: 'A real-time chat application with user authentication and group messaging features. Leveraged WebSockets and Express.',
-    image: '/public/syntis.png',
+    image: 'syntis.png',
   },
   {
     id: 6,
     title: 'No Bounds',
     description: 'A productivity dashboard that tracks tasks, deadlines, and progress. Integrated with external APIs for weather and news.',
-    image: '/public/nb.png',
+    image: 'nb.png',
   },
   {
     id: 7,
