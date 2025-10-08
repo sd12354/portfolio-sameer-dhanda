@@ -9,6 +9,8 @@ import Projects from './Projects';
 import Contact from './Contact';
 import SocialLinks from './SocialLinks';
 import './SocialLinks.css'; 
+import Loading from './Loading';
+import Footer from './Footer';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +18,7 @@ function App() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+
   };
 
   useEffect(() => {
@@ -39,7 +42,11 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  const [loading, setLoading] = useState(true);
 
+  if (loading) {
+    return <Loading onLoadingComplete={() => setLoading(false)} />;
+  }
   return (
     <div class="gradient">
     <div className="container">
@@ -55,6 +62,7 @@ function App() {
       <Projects />
       <Contact />
       <SocialLinks />
+      <Footer />
     </div>
     </div>
   );

@@ -6,16 +6,56 @@
   filter: blur(50%);
   background-color: rgba(205, 205, 205, 0.096);
   border: solid 1px #4dffb5;
+  text-align: center;
 }
-
+#home {
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
 .highlight {
   color: #4dffb5;
+  text-align: center;
 }
 
 #home h2 {
   color: white;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  font-size: 3rem;
 }
 
 p {
   background-color: transparent;
+  font-size: 1rem;
+  width: fit-content;
+}
+
+h2 {
+  background-color: transparent;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  position: relative;
+}
+
+.Top {
+  position: relative;
+  left: 0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  text-align: center;
+
 }

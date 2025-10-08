@@ -42,7 +42,7 @@ const projectData = [
     id: 7,
     title: 'OB Nav',
     description: 'An online booking system for a local service provider. Featured a booking calendar and automated email confirmations.',
-    image: '/public/ob.png',
+    image: 'ob.png',
   },
 ];
 

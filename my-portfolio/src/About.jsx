@@ -29,7 +29,7 @@ function About() {
         <div className="grid-item main-right" data-aos="fade-left">
           {/* Image container with text overlay */}
           <div className="image-overlay-container">
-            <img src="public/nba.png" className='about-img' alt="Profile" />
+            <img src="nba.png" className='about-img' alt="Profile" />
             <div className="image-text-overlay">
               <h3 className="overlay-title">Who I Am <BsPersonBoundingBox /></h3>
               <p>
@@ -80,7 +80,7 @@ function About() {
           <div className="apple-music" data-aos="fade-right">
             <h3>Currently Listening <BsMusicNoteList></BsMusicNoteList></h3>
             <iframe 
-              src="https://embed.music.apple.com/us/album/the-last-wun/1830597627"
+              src="https://music.apple.com/us/playlist/pl.u-Ymb00APTPV1mWo"
               width="100%"
               height="900"
               frameBorder="0"

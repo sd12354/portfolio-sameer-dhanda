@@ -1,13 +1,13 @@
 // src/components/SocialLinks.jsx
 import React from 'react';
 // Changed the import line to get FaAdobe from fa6
+import { BiLogoAdobe } from 'react-icons/bi';
 import { FaLinkedin, FaGithub, FaInstagram, FaYoutube} from 'react-icons/fa';
 import './SocialLinks.css';
-import { BiLogoAdobe } from 'react-icons/bi';
 const socialLinks = [
   {
     icon: <FaLinkedin />,
-    url: 'https://www.linkedin.com/in/your-linkedin-username',
+    url: 'https://www.linkedin.com/in/sameer-dhanda-b97437224/',
     label: 'LinkedIn',
   },
   {
@@ -21,13 +21,13 @@ const socialLinks = [
     label: 'Instagram',
   },
   {
-    icon: <FaInstagram />,
-    url: 'https://www.adobe.com/creativecloud/plans.html',
+    icon: <BiLogoAdobe />,
+    url: 'https://sameerdhanda.myportfolio.com/',
     label: 'Adobe',
   },
   {
     icon: <FaYoutube />,
-    url: 'https://www.youtube.com/channel/your-youtube-channel',
+    url: 'https://www.youtube.com/@Sameer_Dhanda',
     label: 'YouTube',
   },
 ];
