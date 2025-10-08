@@ -5,7 +5,7 @@ import { FaRegComments } from 'react-icons/fa';
 function Contact() {
   return (
     <section id="contact" className="page-section">
-      <h2>Get in Touch <FaRegComments/> </h2>
+      <h2>Get in Touch <FaRegComments color="dodgerblue"/> </h2>
       <p>I'm always open to new opportunities and collaborations.</p>
       <form 
         className="contact-form" 

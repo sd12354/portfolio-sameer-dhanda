@@ -1,0 +1,24 @@
+.mouse-scroll-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.mouse {
+  width: 20px;
+  height: 28px;
+  border: 2px solid #4dffb5; /* pink border */
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8px;
+}
+
+.wheel {
+  width: 8px;
+  height: 8px;
+  background-color: #4dffb5; /* pink fill */
+  border-radius: 50%;
+}
