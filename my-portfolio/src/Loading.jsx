@@ -5,18 +5,46 @@ function Loading({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(() => onLoadingComplete(), 400);
-          return 100;
-        }
-        return prev + 5;
-      });
-    }, 50);
+    const images = document.querySelectorAll('img');
+    const totalImages = images.length;
 
-    return () => clearInterval(timer);
+    if (totalImages === 0) {
+      // No images found, complete immediately
+      setProgress(100);
+      setTimeout(() => onLoadingComplete(), 400);
+      return;
+    }
+
+    let loadedImages = 0;
+
+    const updateProgress = () => {
+      loadedImages++;
+      const currentProgress = Math.round((loadedImages / totalImages) * 100);
+      setProgress(currentProgress);
+
+      if (loadedImages === totalImages) {
+        setTimeout(() => onLoadingComplete(), 400);
+      }
+    };
+
+    images.forEach(img => {
+      if (img.complete) {
+        // Image already loaded
+        updateProgress();
+      } else {
+        // Wait for image to load
+        img.addEventListener('load', updateProgress);
+        img.addEventListener('error', updateProgress); // Count errors as "loaded" to prevent hanging
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      images.forEach(img => {
+        img.removeEventListener('load', updateProgress);
+        img.removeEventListener('error', updateProgress);
+      });
+    };
   }, [onLoadingComplete]);
 
   return (
