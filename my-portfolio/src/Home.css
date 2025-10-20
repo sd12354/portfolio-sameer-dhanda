@@ -1,3 +1,6 @@
+* {
+  border-radius: none;
+}
 #home img {
   height: 12rem;
   border-radius:100px;
@@ -12,10 +15,15 @@
   justify-content: center;
   text-align: center;
   position: relative;
+  background-color: transparent;
+  top: 100px;
 }
 .highlight {
   color: #4dffb5;
   text-align: center;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
 }
 
 #home h2 {
@@ -39,6 +47,8 @@ p {
   background-color: transparent;
   font-size: 1rem;
   width: fit-content;
+  border: none;
+  box-shadow: none;
 }
 
 h2 {
@@ -47,15 +57,20 @@ h2 {
   text-align: center;
   margin: auto;
   position: relative;
+  border: none;
+  box-shadow: none;
 }
 
 .Top {
   position: relative;
+  background-color: transparent;
   left: 0;
   right:0;
   top: 0;
   bottom: 0;
   justify-content: center;
   text-align: center;
+  border: none;
+  box-shadow: none;
 
 }

@@ -2,6 +2,11 @@ import React from 'react';
 import 'animate.css';
 import './Home.css';
 import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
+
 function TypewriterText({ text }) {
   const [displayText, setDisplayText] = useState('');
   
@@ -24,7 +29,7 @@ function TypewriterText({ text }) {
 
 function Home() {
   return (
-    <section id="home" class="hero">
+    <section id="home" class="hero" data-aos="zoom-in-up">
       <div className='Top'>
         <img src="headshot.png" alt="" />
         <h2>Hi, I’m <span style={{ color: '#4dffb5' }}><TypewriterText text="Sameer Dhanda 👋🏽!" /></span></h2>

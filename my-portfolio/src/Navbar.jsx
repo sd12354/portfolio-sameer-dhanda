@@ -1,9 +1,22 @@
-import React from 'react';
-import './Projects.css'
+import './Navbar.css';
 import { FaHome } from 'react-icons/fa';
 import { IoPersonCircle } from 'react-icons/io5';
 import { FaProjectDiagram, FaInfo, FaRocketchat } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
 const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   return (
     <nav className="navbar">
       <h1> &#123; SD &#125;</h1>
@@ -61,6 +74,15 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
         <div className="bar"></div>
         <div className="bar"></div>
         <div className="bar"></div>
+      </div>
+
+      <div className="scroll-progress-container">
+        <div 
+          className="scroll-progress-bar"
+          style={{ width: `${scrollProgress}%` }}
+        >
+          <div className="scroll-progress-glow"></div>
+        </div>
       </div>
     </nav>
   );

@@ -8,6 +8,13 @@ import FloatingOrbs from './FloatingOrbs';
 import { BsMusicNoteList } from 'react-icons/bs';
 import { FaRocket } from 'react-icons/fa';
 import { BsPersonBoundingBox } from 'react-icons/bs';
+import { FaReact, FaJava, FaPython, FaGithub, FaAws} from 'react-icons/fa6';
+import { BiLogoFirebase } from 'react-icons/bi';
+import { IoLogoVercel } from 'react-icons/io5';
+import { BsFiletypeSql } from 'react-icons/bs';
+import { FaHtml5 } from 'react-icons/fa';
+import { MdOutlineInterests } from 'react-icons/md';
+import { PiPersonSimpleSkiLight } from 'react-icons/pi';
 
 AOS.init();
 
@@ -15,7 +22,7 @@ function About() {
   return (
     <section id="about" className="page-section">
       <FloatingOrbs />
-      <h2>About Me <FaUserAlt/> </h2>
+      <h2>About Me <FaUserAlt color="dodgerblue"></FaUserAlt> </h2>
       <div className="about-grid" >
         <div className="grid-item left-top" data-aos="fade-right">
           <h3>My Journey <FaRocket></FaRocket> </h3>
@@ -43,21 +50,23 @@ function About() {
           </div>
         </div>
         <div className="grid-item left-bottom-wrapper">
-          <div className="left-bottom-part part-1" data-aos="fade-up">
-            <h3>Skills</h3>
-            <ul>
-              <li>React.js</li>
-              <li>JavaScript (ES6+)</li>
-              <li>HTML5 & CSS3</li>
-              <li>Node.js</li>
-              <li>Git/GitHub</li>
-              <li>Responsive Design</li>
+          <div className="left-bottom-part part-1">
+            <h3>Skills <PiPersonSimpleSkiLight></PiPersonSimpleSkiLight> </h3>
+            <ul data-aos="fade-up" data-aos-delay="150">
+              <li>React.js <FaReact></FaReact> </li>
+              <li>JavaScript (ES6+) <FaJava></FaJava> </li>
+              <li>HTML5 & CSS3 <FaHtml5></FaHtml5> </li>
+              <li>AWS Cloud Practicioner <FaAws></FaAws> </li>
+              <li>SQL <BsFiletypeSql></BsFiletypeSql> </li>
+              <li>Git/GitHub <FaGithub></FaGithub> </li>
+              <li>Python <FaPython></FaPython> </li>
             </ul>
           </div>
           <div className="left-bottom-part part-2">
-            <h3>Interests</h3>
-            <ul data-aos="fade-up">
-              <li>Web Development</li>
+            <h3>Interests <MdOutlineInterests></MdOutlineInterests> </h3>
+            <ul data-aos="fade-up" data-aos-delay="150">
+              <li>Frontend Development</li>
+              <li>Machine Learning</li>
               <li>UI/UX Design</li>
               <li>Photography</li>
               <li>Learning new languages</li>

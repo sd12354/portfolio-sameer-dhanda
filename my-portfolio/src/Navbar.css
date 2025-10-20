@@ -2,9 +2,18 @@
   font-family: "Poppins", sans-serif;
 }
 
+.navbar {
+  padding: 60px 20px 30px;
+  background: rgba(16, 185, 129, 0.03);
+  border-top: 1px solid rgba(16, 185, 129, 0.2);
+  position: relative;
+}
 .navbar a {
   font-weight: 300;
-  font-family: "Source Code Pro", monospace;
+  font-family:"Poppins", sans-serif;
+  color: #4dffb5;
+  padding: 16px;
+  top: -15px;
 }
 
 .react-icons {
@@ -12,5 +21,59 @@
   font-size: 2rem;
 }
 h1 {
-  color: white;
+  color: #ffffff;
+  justify-content: left;
+  text-align: left;
+  position: relative;
+}
+/* Scroll Progress Bar */
+.scroll-progress-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(16, 185, 129, 0.1);
+  overflow: hidden;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  transition: width 0.1s ease;
+  position: relative;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.scroll-progress-glow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 1) 0%, rgba(16, 185, 129, 0.5) 50%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px rgba(52, 211, 153, 0.8),
+    0 0 30px rgba(16, 185, 129, 0.5);
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }

@@ -30,6 +30,7 @@ body {
   -webkit-backdrop-filter: blur(5.1px);
   border-bottom: .1px solid #4dffb555;
   padding: 16px;
+  height: 125px;
 }
 
 @keyframes scale-in-center-normal {
@@ -58,6 +59,7 @@ body {
   color: rgb(0, 0, 0);
   font-family: "DM Sans", sans-serif;
   padding: 16px;
+  
 }
 
 .nav-links a {
@@ -128,6 +130,8 @@ body {
 @media (max-width: 768px) {
   .navbar {
     padding: 1rem; /* Adjust padding for smaller screens */
+    justify-content: right;
+
   }
 
   /* Display the hamburger icon on mobile */
@@ -141,6 +145,9 @@ body {
     -webkit-backdrop-filter: blur(10px) saturate(180%); /* Keep vendor prefix */
     border-radius: 12px;
     border: .75px solid rgba(106, 106, 106, 0.378);
+    position: relative;
+    justify-content: right;
+    top: 0px;
   }
   
   .hamburger .bar {
@@ -226,11 +233,13 @@ body {
   position: relative;
   overflow: hidden; /* Hide anything that overflows the section */
   min-height: 60vh; /* Ensure the hero section is tall enough */
+  background-color: transparent;
 }
 
 .hero h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  background-color: transparent;
 }
 
 .highlight {
@@ -239,7 +248,7 @@ body {
 
 .hero p {
   font-size: 1.2rem;
-  color: #ccc;
+  color: #aaaaaa;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -254,4 +263,6 @@ logo {
 h1 {
   color: white;
   font-size: 2rem;
+  position: relative;
+  right: 0px;
 }
