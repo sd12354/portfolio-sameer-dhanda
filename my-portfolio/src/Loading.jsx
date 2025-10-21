@@ -5,59 +5,18 @@ function Loading({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Wait a bit for the DOM to fully render with all images
-    const checkImages = () => {
-      const images = document.querySelectorAll('img');
-      const totalImages = images.length;
-
-      if (totalImages === 0) {
-        // No images found, wait a bit longer or complete
-        setTimeout(checkImages, 100);
-        return;
-      }
-
-      let loadedImages = 0;
-
-      const updateProgress = () => {
-        loadedImages++;
-        const currentProgress = Math.round((loadedImages / totalImages) * 100);
-        setProgress(currentProgress);
-
-        if (loadedImages === totalImages) {
+    const timer = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(timer);
           setTimeout(() => onLoadingComplete(), 400);
+          return 100;
         }
-      };
-
-      const imagePromises = Array.from(images).map(img => {
-        return new Promise((resolve) => {
-          if (img.complete && img.naturalWidth !== 0) {
-            // Image already loaded successfully
-            resolve();
-          } else {
-            // Wait for image to load
-            img.addEventListener('load', () => resolve());
-            img.addEventListener('error', () => resolve()); // Resolve on error to prevent hanging
-            
-            // Force reload if src is set but not loading
-            if (img.src && !img.complete) {
-              const src = img.src;
-              img.src = '';
-              img.src = src;
-            }
-          }
-        });
+        return prev + 5;
       });
+    }, 50);
 
-      // Track progress as each promise resolves
-      imagePromises.forEach(promise => {
-        promise.then(updateProgress);
-      });
-    };
-
-    // Start checking after a small delay to ensure DOM is ready
-    const initTimer = setTimeout(checkImages, 100);
-
-    return () => clearTimeout(initTimer);
+    return () => clearInterval(timer);
   }, [onLoadingComplete]);
 
   return (
