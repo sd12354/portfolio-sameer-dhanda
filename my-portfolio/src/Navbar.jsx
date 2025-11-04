@@ -19,7 +19,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
   
   return (
     <nav className="navbar">
-      <h1> &#123; SD &#125;</h1>
+      <img src="/sd-website.svg" alt="" />
       <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
         <li>
           <a
