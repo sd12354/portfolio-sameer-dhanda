@@ -1,16 +1,18 @@
-// src/App.jsx
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './Navbar';
 import Home from './Home';
 import About from './About';
-import SkillsMarquee from './Skills'; // <-- New import
+import Experience from './Experience';
+import Skills from './Skills';
 import Projects from './Projects';
+import Honors from './Honors';
 import Contact from './Contact';
-import SocialLinks from './SocialLinks';
-import './SocialLinks.css'; 
 import Loading from './Loading';
 import Footer from './Footer';
+import FloatingOrbs from './FloatingOrbs';
+
+const SECTION_IDS = ['home', 'about', 'experience', 'skills', 'projects', 'honors', 'contact'];
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,18 +20,16 @@ function App() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'contact'];
       let currentActive = 'home';
-      for (const sectionId of sections) {
+      for (const sectionId of SECTION_IDS) {
         const section = document.getElementById(sectionId);
         if (section) {
           const rect = section.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= 120 && rect.bottom >= 120) {
             currentActive = sectionId;
           }
         }
@@ -37,19 +37,20 @@ function App() {
       setActiveLink(currentActive);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const [loading, setLoading] = useState(true);
 
   if (loading) {
     return <Loading onLoadingComplete={() => setLoading(false)} />;
   }
+
   return (
-    <div class="gradient">
-    <div className="container">
+    <div className="app-shell">
+      <FloatingOrbs />
       <Navbar
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
@@ -57,13 +58,15 @@ function App() {
         setActiveLink={setActiveLink}
       />
       <Home />
-      <About />
-      <SkillsMarquee />
-      <Projects />
-      <Contact />
-      <SocialLinks />
-      <Footer />
-    </div>
+      <div className="container">
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Honors />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }

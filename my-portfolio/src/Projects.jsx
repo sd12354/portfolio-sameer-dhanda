@@ -1,86 +1,70 @@
-import React, { useState } from 'react';
 import './Projects.css';
-import { FaHammer } from 'react-icons/fa';
-const projectData = [
+import { HiExternalLink } from 'react-icons/hi';
+
+const projects = [
   {
-    id: 1,
+    id: 'treasure-seeker',
+    title: 'Treasure Seeker',
+    description:
+      'A data-driven web application built and deployed end-to-end — custom REST API integrations, automated testing, and CI/CD from scratch.',
+    tags: ['React', 'Firebase', 'REST API', 'CI/CD'],
+    liveUrl: 'https://github.com/sd12354',
+  },
+  {
+    id: 'react-firebase',
+    title: 'React + Firebase Apps',
+    description:
+      'A collection of data-intensive apps featuring real-time database pipelines, SQL-style data modeling, and automated quality testing.',
+    tags: ['React', 'Firebase', 'TypeScript', 'SQL'],
+    liveUrl: null,
+  },
+  {
+    id: 'double-edge',
     title: 'Double Edge',
-    description: 'Double Edge is a web application which serves as a way to visualize and analyze the effects of California wildfires and the impact they have on the housing market you can check it out',
-    image: 'double.png',
-  },
-  {
-    id: 2,
-    title: 'Blastid',
-    description: 'An e-commerce platform with a clean design and seamless user experience. Developed using a MERN stack.',
-    image: 'blastid.png',
-  },
-  {
-    id: 3,
-    title: 'SmartU',
-    description: 'A mobile-first portfolio site with sleek animations and a dark theme. Built from scratch with HTML, CSS, and JavaScript.',
-    image: 'smart.png',
-  },
-  {
-    id: 4,
-    title: 'Hades AIO',
-    description: 'A data visualization tool that renders complex datasets into interactive charts and graphs. Used D3.js and React.',
-    image: 'hades.png',
-  },
-  {
-    id: 5,
-    title: 'Syntis',
-    description: 'A real-time chat application with user authentication and group messaging features. Leveraged WebSockets and Express.',
-    image: 'syntis.png',
-  },
-  {
-    id: 6,
-    title: 'No Bounds',
-    description: 'A productivity dashboard that tracks tasks, deadlines, and progress. Integrated with external APIs for weather and news.',
-    image: 'nb.png',
-  },
-  {
-    id: 7,
-    title: 'OB Nav',
-    description: 'An online booking system for a local service provider. Featured a booking calendar and automated email confirmations.',
-    image: 'ob.png',
+    description:
+      'Web app to visualize California wildfire impact on housing — APIs, data visualization, and an end-to-end user experience.',
+    tags: ['React', 'Data Viz', 'REST API', 'Maps'],
+    liveUrl: null,
   },
 ];
 
 function Projects() {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-
-  const totalProjects = projectData.length;
-
-  const nextProject = () => {
-    setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-  };
-
-  const prevProject = () => {
-    setCurrentProjectIndex((prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects);
-  };
-
   return (
-    <section id="projects" className="page-section">
-      <h2>Projects <FaHammer/> </h2>
-      <div className="carousel-container">
-        <div 
-          className="carousel-slides"
-          style={{ transform: `translateX(-${currentProjectIndex * 100}%)` }}
-        >
-          {projectData.map((project) => (
-            <div key={project.id} className="project-card">
-              <img src={project.image} alt={project.title} />
-              <div className="project-info">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </div>
-            </div>
+    <section id="projects" className="projects-section">
+      <div className="projects-section__bg" aria-hidden />
+      <div className="projects-inner">
+        <h2 className="section-title projects-title">Featured Projects</h2>
+        <ul className="projects-list">
+          {projects.map((project) => (
+            <li key={project.id}>
+              <article className="project-card">
+                <header className="project-card__header">
+                  <h3 className="project-card__title">{project.title}</h3>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      className="project-card__cta"
+                      {...(String(project.liveUrl).startsWith('http')
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                    >
+                      <HiExternalLink aria-hidden />
+                      View Live
+                    </a>
+                  ) : (
+                    <span className="project-card__cta-placeholder" />
+                  )}
+                </header>
+                <p className="project-card__desc">{project.description}</p>
+                <ul className="project-card__tags">
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </article>
+            </li>
           ))}
-        </div>
-        <div className="carousel-nav">
-          <button onClick={prevProject}>&lt;</button>
-          <button onClick={nextProject}>&gt;</button>
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,268 +1,79 @@
-/* src/App.css */
+:root {
+  --text-primary: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent-pill-bg: #eff6ff;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --card: #ffffff;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.06);
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: "DM Sans", sans-serif;
-  background: linear-gradient(to bottom right, #151515 0%, #0e0e0e 50%);
+  font-family: var(--font-sans);
+  background: var(--surface-muted);
+  color: var(--text-body);
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
+
 * {
   scroll-behavior: smooth;
 }
+
+.app-shell {
+  min-height: 100vh;
+  position: relative;
+  background: var(--surface-muted);
+}
+
 .container {
   min-height: 100vh;
   width: 100%;
-}
-
-/* --- Navbar Styles --- */
-.navbar {
-  display: flex;
-  justify-content: space-between; /* Pushes logo to left, menu to right */
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: transparent;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 1000;
-  background: transparent;
-  backdrop-filter: blur(5.1px);
-  -webkit-backdrop-filter: blur(5.1px);
-  border-bottom: .1px solid #4dffb555;
-  padding: 16px;
-  height: 125px;
-}
-
-@keyframes scale-in-center-normal {
-  0% {
-    transform: scale(0);
-    opacity: 0; /* Set initial opacity to 0 to prevent a flash */
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-
-/* Hide the hamburger icon on desktop */
-.hamburger {
-  display: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.75rem;
-  list-style-type: none;
-  margin: 0; /* Add this to remove default margin */
-  padding: 0; /* Add this to remove default padding */
-  color: rgb(0, 0, 0);
-  font-family: "DM Sans", sans-serif;
-  padding: 16px;
-  
-}
-
-.nav-links a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  padding: 16px;
-  font-size: .8rem;
-  background: rgba(255, 255, 255, 0.041);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%); /* Keep vendor prefix */
-  border-radius: 12px;
-  border: .75px solid rgba(106, 106, 106, 0.557);
-  color: #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Glow on hover */
-.nav-links a:hover {
-  color: #4dffb5; /* Light pink glow color */
-}
-
-/* --- Hero Section --- */
-.hero {
-  text-align: center;
-  padding: 6rem 2rem;
-}
-
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.highlight {
-  color: rgb(0, 0, 0);
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #ffffff;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
-}
-/* --- Add this to your nav-links a styles --- */
-.nav-links a.active {
-  /* This is the style for the selected link */
-  color: #4dffb5; /* Or any other color you prefer */
+  position: relative;
+  z-index: 1;
+  padding: 0 1.25rem;
 }
 
-/* Ensure the hover effect still works */
-.nav-links a:hover {
-  color: #4dffb5;
-  text-shadow: 0 0 10px #4dffb5, 0 0 20px #4dffb5;
-}
-
-/* You might want to adjust the base link color for better contrast */
-.nav-links a {
-  /* Add a default color for non-active links */
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  /* ... rest of your styles ... */
-}
-/* --- Mobile Styles --- */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem; /* Adjust padding for smaller screens */
-    justify-content: right;
-
-  }
-
-  /* Display the hamburger icon on mobile */
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 1001; /* Higher z-index to be on top of the menu */
-    background: rgba(255, 255, 255, 0.111);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%); /* Keep vendor prefix */
-    border-radius: 12px;
-    border: .75px solid rgba(106, 106, 106, 0.378);
-    position: relative;
-    justify-content: right;
-    top: 0px;
-  }
-  
-  .hamburger .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: all 0.3s ease-in-out;
-    
-  }
-  
-  /* Animate the hamburger icon to an 'X' */
-  .hamburger.open .bar:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .hamburger.open .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  
-  .hamburger.open .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* Hide the nav links on mobile by default */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    background-color: #151515; /* Adjust color for a better look */
-    backdrop-filter: blur(10px);
-    position: fixed; /* Use fixed for full-screen overlay */
-    top: 0;
-    left: 0;
-    height: 100vh;
-    padding-top: 5rem; /* Add padding to push content below navbar */
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(100%); /* Start off-screen to the right */
-  }
-
-  /* Show the menu when the 'open' class is applied */
-  .nav-links.open {
-    display: flex;
-    transform: translateX(0); /* Slide into view */
-  }
-  
-  .nav-links li {
-    margin: 1.5rem 0; /* Add more vertical spacing for mobile */
-  }
-
-  .nav-links a {
-    background: none; /* Remove glass effect from mobile links */
-    backdrop-filter: none;
-    border: none;
-    box-shadow: none;
-    padding: 0.5rem; /* Adjust padding */
-    font-size: 1rem; /* Make font size larger for readability */
-    background: rgba(255, 255, 255, 0.111);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%); /* Keep vendor prefix */
-    border-radius: 12px;
-    padding: 16px;
-    border: .75px solid rgba(106, 106, 106, 0.378);
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
   }
 }
 
-/* --- Page Section Styling --- */
 .page-section {
-  padding: 6rem 2rem;
+  padding: 5rem 0;
   text-align: center;
-  min-height: 100vh; /* Optional: Make each section take up at least the full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
 }
 
-/* Hero Section (Home) */
-.hero {
-  text-align: center;
-  position: relative;
-  overflow: hidden; /* Hide anything that overflows the section */
-  min-height: 60vh; /* Ensure the hero section is tall enough */
-  background-color: transparent;
+.section-title {
+  margin: 0;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  background-color: transparent;
+h1,
+h2,
+h3 {
+  font-family: var(--font-sans);
 }
 
-.highlight {
-  color: #0c28ff;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #aaaaaa;
-  max-width: 600px;
-  margin: 0 auto;
-}
 p {
-  font-family: "DM Sans", sans-serif;
-}
-
-logo {
-  height: 25%;
-}
-
-h1 {
-  color: white;
-  font-size: 2rem;
-  position: relative;
-  right: 0px;
+  font-family: var(--font-sans);
 }

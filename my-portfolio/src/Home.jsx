@@ -1,40 +1,30 @@
-import React from 'react';
-import 'animate.css';
 import './Home.css';
-import { useState, useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
-AOS.init();
-
-function TypewriterText({ text }) {
-  const [displayText, setDisplayText] = useState('');
-  
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= text.length) {
-        setDisplayText(text.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-    
-    return () => clearInterval(timer);
-  }, [text]);
-  
-  return <span>{displayText}<span style={{ animation: 'blink 1s infinite' }}>|</span></span>;
-}
+import { HiChevronDown } from 'react-icons/hi';
 
 function Home() {
   return (
-    <section id="home" class="hero" data-aos="zoom-in-up">
-      <div className='Top'>
-        <img src="headshot.png" alt="" />
-        <h2>Hi, I’m <span style={{ color: '#4dffb5' }}><TypewriterText text="Sameer Dhanda 👋🏽!" /></span></h2>
-        <p>I’m a passionate developer creating modern, beautiful, and functional web experiences.</p>
+    <section id="home" className="hero">
+      <div className="hero-mesh" aria-hidden />
+      <div className="hero-content">
+        <h1 className="hero-name">Sameer Dhanda</h1>
+        <p className="hero-role">Software Engineer</p>
+        <p className="hero-location">Based in Boston, MA / Washington, DC</p>
+        <p className="hero-tagline">Building clean software and solving hard problems.</p>
+        <div className="hero-actions">
+          <a href="#projects" className="btn btn-primary">
+            View My Work
+          </a>
+          <a
+            href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
+            className="btn btn-secondary"
+          >
+            Resume
+          </a>
+        </div>
       </div>
+      <a href="#about" className="hero-scroll-hint" aria-label="Scroll to about">
+        <HiChevronDown />
+      </a>
     </section>
   );
 }

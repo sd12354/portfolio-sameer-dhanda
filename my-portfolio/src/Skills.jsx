@@ -1,40 +1,58 @@
-import React from 'react';
-import { FaReact, FaJava, FaPython, FaGithub, FaAws} from 'react-icons/fa6';
 import './Skills.css';
-import { BiLogoFirebase } from 'react-icons/bi';
-import { BiLogoAdobe } from 'react-icons/bi';
-import { IoLogoVercel } from 'react-icons/io5';
-import { BsFiletypeSql } from 'react-icons/bs';
+import { HiCode } from 'react-icons/hi';
+import { TbCube } from 'react-icons/tb';
+import { FaDatabase, FaCloud } from 'react-icons/fa';
+import { BsDiagram3 } from 'react-icons/bs';
 
-const skills = [
-  { icon: <FaGithub /> },
-  { icon: <FaReact /> },
-  { icon: <FaJava />},
-  { icon: <FaPython /> },
-  { icon: <FaAws /> },
-  { icon: <BiLogoFirebase /> },
-  { icon: <BiLogoAdobe /> },
-  { icon: <IoLogoVercel /> },
-  { icon: <BsFiletypeSql/> },
+const categories = [
+  {
+    Icon: HiCode,
+    title: 'Languages',
+    items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'Swift', 'HTML', 'CSS'],
+  },
+  {
+    Icon: TbCube,
+    title: 'Frameworks & Libraries',
+    items: ['React', 'Node.js'],
+  },
+  {
+    Icon: FaDatabase,
+    title: 'Data & Backend',
+    items: ['SQL/RDBMS', 'Data Pipelines', 'REST APIs', 'Firebase', 'Batch Processing'],
+  },
+  {
+    Icon: FaCloud,
+    title: 'Cloud & Tools',
+    items: ['Google Cloud Platform', 'AWS', 'Git/GitHub', 'Postman', 'Jira', 'CI/CD'],
+  },
+  {
+    Icon: BsDiagram3,
+    title: 'Practices',
+    items: ['Agile/Scrum', 'Automated Testing', 'Technical Documentation'],
+  },
 ];
 
-function SkillsMarquee() {
+function Skills() {
   return (
-    <section className="skills-marquee-section">
-      <div className="marquee-container">
-        {/* We duplicate the content to create a seamless loop */}
-        <div className="marquee-content">
-          {skills.map((skill, index) => (
-            <div className="skill-item" key={`first-${index}`}>
-              {skill.icon}
-              <p>{skill.name}</p>
-            </div>
-          ))}
-          {skills.map((skill, index) => (
-            <div className="skill-item" key={`second-${index}`}>
-              {skill.icon}
-              <p>{skill.name}</p>
-            </div>
+    <section id="skills" className="skills-section">
+      <div className="skills-section__bg" aria-hidden />
+      <div className="skills-inner">
+        <h2 className="section-title skills-title">Skills</h2>
+        <div className="skills-grid">
+          {categories.map(({ Icon, title, items }) => (
+            <article key={title} className="skills-card">
+              <header className="skills-card__head">
+                <span className="skills-card__icon-wrap">
+                  <Icon className="skills-card__icon" aria-hidden />
+                </span>
+                <h3 className="skills-card__title">{title}</h3>
+              </header>
+              <ul className="skills-card__list">
+                {items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </div>
@@ -42,4 +60,4 @@ function SkillsMarquee() {
   );
 }
 
-export default SkillsMarquee;
+export default Skills;

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 
 function Loading({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setProgress(prev => {
+      setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
           setTimeout(() => onLoadingComplete(), 400);
@@ -20,53 +19,47 @@ function Loading({ onLoadingComplete }) {
   }, [onLoadingComplete]);
 
   return (
-    <div style={styles.container}>
-      <div style={styles.content}>
-        <div style={styles.spinner}></div>
-        <h2 style={styles.text}>{progress}%</h2>
+    <div className="loading-screen">
+      <div className="loading-screen__content">
+        <div className="loading-screen__spinner" />
+        <p className="loading-screen__text">{progress}%</p>
       </div>
       <style>{`
-        @keyframes spin {
+        @keyframes loading-spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        .loading-screen {
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f8fafc;
+          z-index: 9999;
+        }
+        .loading-screen__content {
+          text-align: center;
+        }
+        .loading-screen__spinner {
+          width: 48px;
+          height: 48px;
+          margin: 0 auto 1.25rem;
+          border: 3px solid rgba(37, 99, 235, 0.2);
+          border-top-color: #2563eb;
+          border-radius: 50%;
+          animation: loading-spin 0.9s linear infinite;
+        }
+        .loading-screen__text {
+          margin: 0;
+          font-family: 'Inter', system-ui, sans-serif;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #64748b;
         }
       `}</style>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'linear-gradient(to bottom right, #151515 0%, #0e0e0e 50%)',
-    zIndex: 9999,
-  },
-  content: {
-    textAlign: 'center',
-  },
-  spinner: {
-    width: '50px',
-    height: '50px',
-    border: '2px solid rgba(205, 205, 205, 0.096)',
-    borderTop: '2px solid #4dffb5',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite',
-    margin: '0 auto 30px',
-    background: "transparent"
-  },
-  text: {
-    color: '#4dffb5',
-    fontSize: '1.25rem',
-    background: 'transparent',
-    border: 'none',
-  },
-};
 
 export default Loading;

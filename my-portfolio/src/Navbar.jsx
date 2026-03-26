@@ -1,90 +1,102 @@
 import './Navbar.css';
-import { FaHome } from 'react-icons/fa';
-import { IoPersonCircle } from 'react-icons/io5';
-import { FaProjectDiagram, FaInfo, FaRocketchat } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { HiDocumentText } from 'react-icons/hi';
+
+const NAV_LINKS = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'honors', label: 'Honors' },
+  { id: 'contact', label: 'Contact' },
+];
+
 const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const closeMenu = () => {
+    if (isMenuOpen) toggleMenu();
+  };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
   return (
-    <nav className="navbar">
-      <img src="/sd-website.svg" alt="" />
-      <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-        <li>
-          <a
-            href="#home"
-            className={activeLink === 'home' ? 'active' : ''}
-            onClick={() => {
-              setActiveLink('home');
-              toggleMenu();
-            }}
-          >
-            Home <FaHome/>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#about"
-            className={activeLink === 'about' ? 'active' : ''}
-            onClick={() => {
-              setActiveLink('about');
-              toggleMenu();
-            }}
-          >
-            About Me <IoPersonCircle/>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#projects"
-            className={activeLink === 'projects' ? 'active' : ''}
-            onClick={() => {
-              setActiveLink('projects');
-              toggleMenu();
-            }}
-          >
-            Projects <FaProjectDiagram/>
-          </a>
-        </li>
-        <li>
-          <a
-            href="#contact"
-            className={activeLink === 'contact' ? 'active' : ''}
-            onClick={() => {
-              setActiveLink('contact');
-              toggleMenu();
-            }}
-          >
-            Contact <FaRocketchat/>
-          </a>
-        </li>
-      </ul>
-      <div className="hamburger" onClick={toggleMenu}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
-
-      <div className="scroll-progress-container">
-        <div 
-          className="scroll-progress-bar"
-          style={{ width: `${scrollProgress}%` }}
+    <header className="site-header">
+      <nav className="navbar" aria-label="Main">
+        <a
+          href="#home"
+          className="navbar-brand"
+          aria-label="Sameer Dhanda — Home"
+          onClick={() => {
+            setActiveLink('home');
+            closeMenu();
+          }}
         >
-          <div className="scroll-progress-glow"></div>
+          <span className="navbar-brand-mark" aria-hidden="true">
+            <span className="navbar-brand-initials">SD</span>
+          </span>
+          <span className="navbar-brand-text">
+            <span className="navbar-brand-name">Sameer Dhanda</span>
+            <span className="navbar-brand-role">Software Engineer</span>
+          </span>
+        </a>
+
+        <ul className={`nav-links ${isMenuOpen ? 'nav-links--open' : ''}`}>
+          {NAV_LINKS.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                className={activeLink === id ? 'nav-link nav-link--active' : 'nav-link'}
+                onClick={() => {
+                  setActiveLink(id);
+                  closeMenu();
+                }}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="navbar-actions">
+          <div className="navbar-social">
+            <a
+              href="https://github.com/sd12354"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navbar-icon-link"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/sameer-dhanda-b97437224/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navbar-icon-link"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
+              className="navbar-icon-link"
+              aria-label="Request resume"
+            >
+              <HiDocumentText />
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className={`nav-toggle ${isMenuOpen ? 'nav-toggle--open' : ''}`}
+            onClick={toggleMenu}
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle menu"
+          >
+            <span className="nav-toggle-bar" />
+            <span className="nav-toggle-bar" />
+            <span className="nav-toggle-bar" />
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

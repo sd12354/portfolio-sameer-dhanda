@@ -1,0 +1,88 @@
+.honors-section {
+  position: relative;
+  padding: 4rem 1.5rem 4.5rem;
+  background: var(--surface);
+}
+
+.honors-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 50% at 20% 40%, rgba(147, 197, 253, 0.18), transparent 65%),
+    radial-gradient(ellipse 50% 50% at 85% 60%, rgba(251, 207, 232, 0.22), transparent 68%);
+}
+
+.honors-inner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.honors-title {
+  margin-bottom: 1.75rem;
+}
+
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.honors-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.35rem 1.4rem;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.honors-card--lavender {
+  background: linear-gradient(135deg, rgba(245, 243, 255, 0.95) 0%, rgba(238, 242, 255, 0.92) 100%);
+}
+
+.honors-card--cream {
+  background: linear-gradient(135deg, rgba(255, 251, 235, 0.98) 0%, rgba(255, 245, 228, 0.96) 100%);
+}
+
+.honors-card--mint {
+  background: linear-gradient(135deg, rgba(236, 253, 245, 0.98) 0%, rgba(209, 250, 229, 0.55) 100%);
+}
+
+.honors-card--sky {
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.98) 0%, rgba(224, 242, 254, 0.88) 100%);
+}
+
+.honors-icon {
+  flex-shrink: 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  color: var(--text-primary);
+  margin-top: 0.15rem;
+  opacity: 0.88;
+}
+
+.honors-card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.honors-card-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .honors-grid {
+    grid-template-columns: 1fr;
+  }
+}
