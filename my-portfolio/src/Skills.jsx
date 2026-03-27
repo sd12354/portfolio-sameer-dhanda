@@ -3,6 +3,7 @@ import { HiCode } from 'react-icons/hi';
 import { TbCube } from 'react-icons/tb';
 import { FaDatabase, FaCloud } from 'react-icons/fa';
 import { BsDiagram3 } from 'react-icons/bs';
+import { motion, useReducedMotion } from 'motion/react';
 
 const categories = [
   {
@@ -13,7 +14,7 @@ const categories = [
   {
     Icon: TbCube,
     title: 'Frameworks & Libraries',
-    items: ['React', 'Node.js'],
+    items: ['React', 'Next.js', 'SwiftUI', 'Tailwind CSS', 'Prisma', 'Motion'],
   },
   {
     Icon: FaDatabase,
@@ -33,14 +34,42 @@ const categories = [
 ];
 
 function Skills() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="skills" className="skills-section">
       <div className="skills-section__bg" aria-hidden />
       <div className="skills-inner">
-        <h2 className="section-title skills-title">Skills</h2>
-        <div className="skills-grid">
+        <motion.h2
+          className="section-title skills-title"
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.5 }}
+        >
+          Skills
+        </motion.h2>
+        <motion.div
+          className="skills-grid"
+          initial={reduceMotion ? false : 'hidden'}
+          whileInView={reduceMotion ? undefined : 'show'}
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.08 } },
+          }}
+        >
           {categories.map(({ Icon, title, items }) => (
-            <article key={title} className="skills-card">
+            <motion.article
+              key={title}
+              className="skills-card"
+              variants={{
+                hidden: { opacity: 0, y: 14 },
+                show: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.4 }}
+              whileHover={reduceMotion ? undefined : { y: -3 }}
+            >
               <header className="skills-card__head">
                 <span className="skills-card__icon-wrap">
                   <Icon className="skills-card__icon" aria-hidden />
@@ -52,9 +81,9 @@ function Skills() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

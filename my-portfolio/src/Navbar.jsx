@@ -1,6 +1,7 @@
 import './Navbar.css';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiDocumentText } from 'react-icons/hi';
+import { HiMoon, HiSun } from 'react-icons/hi2';
 
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
@@ -11,7 +12,7 @@ const NAV_LINKS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
+const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, toggleTheme }) => {
   const closeMenu = () => {
     if (isMenuOpen) toggleMenu();
   };
@@ -56,6 +57,14 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink }) => {
 
         <div className="navbar-actions">
           <div className="navbar-social">
+            <button
+              type="button"
+              className="navbar-icon-link navbar-theme-toggle"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              onClick={toggleTheme}
+            >
+              {theme === 'light' ? <HiMoon /> : <HiSun />}
+            </button>
             <a
               href="https://github.com/sd12354"
               target="_blank"

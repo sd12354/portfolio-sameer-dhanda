@@ -1,5 +1,6 @@
 import './Experience.css';
 import { HiCalendar } from 'react-icons/hi';
+import { motion, useReducedMotion } from 'motion/react';
 
 const experiences = [
   {
@@ -27,19 +28,50 @@ const experiences = [
 ];
 
 function Experience() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="experience" className="experience-section">
       <div className="section-inner">
-        <h2 className="section-title">Experience</h2>
+        <motion.h2
+          className="section-title"
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.5 }}
+        >
+          Experience
+        </motion.h2>
         <div className="experience-timeline">
           <div className="experience-line" aria-hidden />
-          <ul className="experience-list">
+          <motion.ul
+            className="experience-list"
+            initial={reduceMotion ? false : 'hidden'}
+            whileInView={reduceMotion ? undefined : 'show'}
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.12 } },
+            }}
+          >
             {experiences.map((job) => (
-              <li key={`${job.company}-${job.title}`} className="experience-item">
+              <motion.li
+                key={`${job.company}-${job.title}`}
+                className="experience-item"
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.45 }}
+              >
                 <div className="experience-node" aria-hidden>
                   <span className="experience-node-dot" />
                 </div>
-                <article className="experience-card">
+                <motion.article
+                  className="experience-card"
+                  whileHover={reduceMotion ? undefined : { y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <header className="experience-card-header">
                     <h3 className="experience-job-title">{job.title}</h3>
                     <div className="experience-date">
@@ -54,10 +86,10 @@ function Experience() {
                       <li key={b}>{b}</li>
                     ))}
                   </ul>
-                </article>
-              </li>
+                </motion.article>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </div>
       </div>
     </section>

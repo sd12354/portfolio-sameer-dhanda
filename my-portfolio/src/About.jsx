@@ -66,6 +66,21 @@ function About() {
               When I&apos;m not building, I&apos;m leading, organizing, and pushing things forward on
               campus.
             </p>
+            <div className="about-leadership">
+              <h3 className="about-leadership__title">Leadership</h3>
+              <ul className="about-leadership__list">
+                <li>
+                  Google Student Developer Club — <strong>Freshman Liaison</strong> (2023–24)
+                </li>
+                <li>
+                  Men of George Washington Carver Inc. — <strong>Co-Chair of Public Relations</strong>
+                </li>
+                <li>
+                  College of Engineering &amp; Architecture — <strong>Social Media Coordinator</strong>{' '}
+                  (2025–26)
+                </li>
+              </ul>
+            </div>
             <div className="about-tags">
               <span className="about-tag about-tag--blue">
                 <span className="about-tag-dot" aria-hidden />

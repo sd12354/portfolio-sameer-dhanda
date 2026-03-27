@@ -1,6 +1,6 @@
 .about-section {
   position: relative;
-  padding: 4.5rem 0 5rem;
+  padding: 3.75rem 0 4rem;
   background: var(--surface);
 }
 
@@ -20,13 +20,13 @@
 }
 
 .about-heading {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: minmax(260px, 400px) 1fr;
-  gap: 3rem;
+  gap: 2.25rem;
   align-items: start;
 }
 
@@ -44,6 +44,7 @@
   box-shadow:
     0 24px 48px -18px rgba(15, 23, 42, 0.12),
     0 0 0 1px rgba(15, 23, 42, 0.04);
+  isolation: isolate;
 }
 
 .about-visual__aurora {
@@ -134,6 +135,8 @@
   /* Anchor to bottom so feet sit flush with the rounded frame (no dead band) */
   object-position: 50% 100%;
   flex-shrink: 0;
+  /* Removes black matte from the PNG by blending black into backdrop */
+  mix-blend-mode: lighten;
   filter:
     drop-shadow(0 20px 32px rgba(15, 23, 42, 0.14))
     drop-shadow(0 8px 16px rgba(37, 99, 235, 0.07))
@@ -165,6 +168,79 @@
 
 .about-copy p:last-of-type {
   margin-bottom: 1.5rem;
+}
+
+.about-leadership {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(248, 250, 252, 0.75);
+}
+
+[data-theme='dark'] .about-leadership {
+  border: 1px solid rgba(71, 85, 105, 0.72);
+  background: rgba(15, 23, 42, 0.88);
+  box-shadow: 0 10px 26px -18px rgba(2, 6, 23, 0.75);
+}
+
+.about-leadership__title {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+[data-theme='dark'] .about-leadership__title {
+  color: #f1f5f9;
+}
+
+.about-leadership__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: var(--text-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+[data-theme='dark'] .about-leadership__list {
+  color: #cbd5e1;
+}
+
+.about-leadership__list li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.about-leadership__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.85;
+}
+
+[data-theme='dark'] .about-leadership__list li::before {
+  background: #60a5fa;
+  opacity: 1;
+}
+
+.about-leadership__list strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+[data-theme='dark'] .about-leadership__list strong {
+  color: #e2e8f0;
 }
 
 .about-tags {

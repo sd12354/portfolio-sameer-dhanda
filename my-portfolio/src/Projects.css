@@ -1,6 +1,6 @@
 .projects-section {
   position: relative;
-  padding: 4.5rem 0 5rem;
+  padding: 3.75rem 0 4rem;
   background: var(--surface);
 }
 
@@ -20,7 +20,7 @@
 }
 
 .projects-title {
-  margin-bottom: 2rem;
+  margin-bottom: 2.4rem;
 }
 
 .projects-list {
@@ -74,6 +74,13 @@
   transition: background 0.2s ease;
 }
 
+.project-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 .project-card__cta svg {
   width: 1rem;
   height: 1rem;
@@ -95,6 +102,95 @@
   color: var(--text-muted);
   font-weight: 400;
   text-align: left;
+}
+
+.project-card__media {
+  margin: 0 0 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+}
+
+.project-card__media img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  display: block;
+}
+
+.project-card__video {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+
+.project-carousel {
+  position: relative;
+  margin: 0 0 1rem;
+}
+
+.project-carousel__viewport {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #f8fafc;
+}
+
+.project-carousel__viewport img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+  background: #0b1220;
+}
+
+.project-carousel__nav {
+  position: absolute;
+  top: calc(50% - 18px);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.project-carousel__nav--left {
+  left: 0.6rem;
+}
+
+.project-carousel__nav--right {
+  right: 0.6rem;
+}
+
+.project-carousel__dots {
+  margin-top: 0.55rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.project-carousel__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(100, 116, 139, 0.35);
+  cursor: pointer;
+}
+
+.project-carousel__dot--active {
+  background: var(--accent);
 }
 
 .project-card__tags {
@@ -119,6 +215,10 @@
   .project-card__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .project-card__actions {
+    justify-content: flex-start;
   }
 
   .project-card__cta-placeholder {
