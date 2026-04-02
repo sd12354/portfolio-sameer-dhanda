@@ -7,6 +7,7 @@
 .projects-section__bg {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 65% 55% at 75% 25%, rgba(186, 230, 253, 0.35), transparent 55%),
@@ -209,6 +210,12 @@
   background: var(--accent-soft);
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
+}
+
+@media (max-width: 767px) {
+  .projects-section {
+    padding: 3rem clamp(1rem, 5vw, 1.75rem) 3.25rem;
+  }
 }
 
 @media (max-width: 520px) {

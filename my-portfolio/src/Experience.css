@@ -8,15 +8,16 @@
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 55% 40% at 8% 35%, rgba(139, 92, 246, 0.09), transparent 70%),
     radial-gradient(ellipse 50% 45% at 92% 55%, rgba(251, 191, 36, 0.08), transparent 72%);
 }
 
-.section-inner {
+.experience-inner {
   position: relative;
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -170,6 +171,12 @@
   margin-bottom: 0;
 }
 
+@media (max-width: 767px) {
+  .experience-section {
+    padding: 3rem clamp(1rem, 5vw, 1.75rem) 3.25rem;
+  }
+}
+
 @media (max-width: 600px) {
   .experience-card-header {
     flex-direction: column;
@@ -177,5 +184,17 @@
 
   .experience-line {
     left: 10px;
+  }
+
+  .experience-card {
+    padding: 1.15rem clamp(0.9rem, 3.5vw, 1.25rem) 1.05rem;
+  }
+
+  .experience-date {
+    white-space: normal;
+  }
+
+  .experience-job-title {
+    max-width: none;
   }
 }

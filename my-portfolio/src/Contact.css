@@ -8,6 +8,7 @@
 .contact-section__bg {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 70% 55% at 20% 50%, rgba(251, 207, 232, 0.35), transparent 60%),

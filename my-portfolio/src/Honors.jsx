@@ -18,14 +18,14 @@ const honors = [
     id: 'nba-fellow',
     icon: FaBasketballBall,
     title: '2025 NBA x HBCU Fellow',
-    subtitle: 'Selected from 10,000+ applicants',
+    subtitle: 'One of 70 fellows selected from 10,000+ applicants',
     variant: 'lavender',
   },
   {
     id: 'founders',
     icon: FaGraduationCap,
     title: 'Howard University Founders Scholarship',
-    subtitle: 'Merit-based scholarship recipient maintaini',
+    subtitle: 'Merit-based scholarship recipient — must maintain a 3.5 GPA to retain',
     variant: 'cream',
   },
   {
@@ -39,7 +39,8 @@ const honors = [
     id: 'obryant',
     icon: FaAward,
     title: "John D. O'Bryant Scholarship",
-    subtitle: "John D. O'Bryant School of Mathematics and Science",
+    subtitle:
+      "John D. O'Bryant School of Mathematics and Science — maintained 4.3 weighted / 3.93 unweighted GPA",
     variant: 'sky',
   },
 ];

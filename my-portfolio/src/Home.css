@@ -16,7 +16,7 @@
     #f0f9ff 22%,
     #faf5ff 52%,
     #ecfdf5 78%,
-    #fae8ff 100%
+    var(--surface-muted) 100%
   );
 }
 
@@ -27,13 +27,14 @@
     #0b1220 24%,
     #111827 52%,
     #0f172a 78%,
-    #020617 100%
+    var(--surface-muted) 100%
   );
 }
 
 .hero-mesh {
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
   background:
     radial-gradient(ellipse 100% 80% at 48% 42%, rgba(255, 255, 255, 0.55) 0%, transparent 55%),
@@ -109,13 +110,26 @@
   margin: 3rem auto 0;
   overflow: hidden;
   position: relative;
+  /* Room for icon shadows so overflow:hidden does not cut a hard line */
+  padding-block: 0.65rem;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 10%,
-    black 90%,
+    #000 10%,
+    #000 90%,
     transparent 100%
   );
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .hero-tech-track {
@@ -226,6 +240,7 @@
   bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
   color: var(--text-muted);
   font-size: 1.5rem;
   line-height: 0;

@@ -73,7 +73,12 @@ function About() {
                   Google Student Developer Club — <strong>Freshman Liaison</strong> (2023–24)
                 </li>
                 <li>
-                  Men of George Washington Carver Inc. — <strong>Co-Chair of Public Relations</strong>
+                  Men of George Washington Carver Inc. — <strong>Co-Chair of Public Relations</strong>{' '}
+                  (May 2024 – April 2025)
+                </li>
+                <li>
+                  DC HBCU Inc. — <strong>Public Relations Chair</strong> (January 2025 – October 2025);
+                  nonprofit supporting the local DC community
                 </li>
                 <li>
                   College of Engineering &amp; Architecture — <strong>Social Media Coordinator</strong>{' '}

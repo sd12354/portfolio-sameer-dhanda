@@ -32,7 +32,7 @@ function Experience() {
 
   return (
     <section id="experience" className="experience-section">
-      <div className="section-inner">
+      <div className="experience-inner">
         <motion.h2
           className="section-title"
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}

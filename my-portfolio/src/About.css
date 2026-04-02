@@ -7,6 +7,7 @@
 .about-section__bg {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 55% 45% at 92% 8%, rgba(251, 207, 232, 0.35), transparent 58%),
@@ -299,5 +300,15 @@
 
   .about-heading {
     text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 3rem clamp(1rem, 5vw, 1.75rem) 3.25rem;
+  }
+
+  .about-leadership {
+    padding: 0.9rem clamp(0.75rem, 3vw, 1rem) 0.85rem;
   }
 }

@@ -7,6 +7,7 @@
 .skills-section__bg {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background:
     radial-gradient(ellipse 60% 45% at 50% 0%, rgba(254, 249, 195, 0.45), transparent 55%),
@@ -99,6 +100,12 @@
 
 .skills-card__list li:last-child {
   margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .skills-section {
+    padding: 3rem clamp(1rem, 5vw, 1.75rem) 3.25rem;
+  }
 }
 
 @media (max-width: 900px) {
