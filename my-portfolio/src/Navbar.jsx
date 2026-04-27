@@ -1,6 +1,5 @@
 import './Navbar.css';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { HiDocumentText } from 'react-icons/hi';
 import { HiMoon, HiSun } from 'react-icons/hi2';
 
 const NAV_LINKS = [
@@ -22,19 +21,15 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
       <nav className="navbar" aria-label="Main">
         <a
           href="#home"
-          className="navbar-brand"
+          className="navbar-brand navbar-gradient-ring"
           aria-label="Sameer Dhanda — Home"
           onClick={() => {
             setActiveLink('home');
             closeMenu();
           }}
         >
-          <span className="navbar-brand-mark" aria-hidden="true">
-            <span className="navbar-brand-initials">SD</span>
-          </span>
           <span className="navbar-brand-text">
             <span className="navbar-brand-name">Sameer Dhanda</span>
-            <span className="navbar-brand-role">Software Engineer</span>
           </span>
         </a>
 
@@ -43,7 +38,11 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
             <li key={id}>
               <a
                 href={`#${id}`}
-                className={activeLink === id ? 'nav-link nav-link--active' : 'nav-link'}
+                className={
+                  activeLink === id
+                    ? 'nav-link nav-link--active navbar-gradient-ring'
+                    : 'nav-link navbar-gradient-ring'
+                }
                 onClick={() => {
                   setActiveLink(id);
                   closeMenu();
@@ -57,19 +56,11 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
 
         <div className="navbar-actions">
           <div className="navbar-social">
-            <button
-              type="button"
-              className="navbar-icon-link navbar-theme-toggle"
-              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-              onClick={toggleTheme}
-            >
-              {theme === 'light' ? <HiMoon /> : <HiSun />}
-            </button>
             <a
               href="https://github.com/sd12354"
               target="_blank"
               rel="noopener noreferrer"
-              className="navbar-icon-link"
+              className="navbar-icon-link navbar-gradient-ring"
               aria-label="GitHub"
             >
               <FaGithub />
@@ -78,23 +69,37 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
               href="https://www.linkedin.com/in/sameer-dhanda-b97437224/"
               target="_blank"
               rel="noopener noreferrer"
-              className="navbar-icon-link"
+              className="navbar-icon-link navbar-gradient-ring"
               aria-label="LinkedIn"
             >
               <FaLinkedin />
             </a>
-            <a
-              href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
-              className="navbar-icon-link"
-              aria-label="Request resume"
+            <button
+              type="button"
+              className={
+                theme === 'dark'
+                  ? 'nav-theme-switch nav-theme-switch--dark navbar-gradient-ring'
+                  : 'nav-theme-switch navbar-gradient-ring'
+              }
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              aria-pressed={theme === 'dark'}
+              onClick={toggleTheme}
             >
-              <HiDocumentText />
-            </a>
+              <span className="nav-theme-switch__rail" aria-hidden>
+                <span className="nav-theme-switch__icon">
+                  <HiSun />
+                </span>
+                <span className="nav-theme-switch__icon">
+                  <HiMoon />
+                </span>
+                <span className="nav-theme-switch__thumb" />
+              </span>
+            </button>
           </div>
 
           <button
             type="button"
-            className={`nav-toggle ${isMenuOpen ? 'nav-toggle--open' : ''}`}
+            className={`nav-toggle navbar-gradient-ring ${isMenuOpen ? 'nav-toggle--open' : ''}`}
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"

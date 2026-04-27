@@ -1,5 +1,5 @@
 import './Home.css';
-import { HiChevronDown } from 'react-icons/hi';
+import { HiArrowRight, HiChevronDown } from 'react-icons/hi';
 import { motion, useReducedMotion } from 'motion/react';
 import {
   FaAws,
@@ -91,14 +91,7 @@ function Home() {
             whileTap={reduceMotion ? undefined : { scale: 0.98 }}
           >
             View My Work
-          </motion.a>
-          <motion.a
-            href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
-            className="btn btn-secondary"
-            whileHover={reduceMotion ? undefined : { y: -2, scale: 1.01 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-          >
-            Resume
+            <HiArrowRight className="btn-icon-end" aria-hidden />
           </motion.a>
         </div>
         <div className="hero-tech-marquee" aria-label="Technologies">

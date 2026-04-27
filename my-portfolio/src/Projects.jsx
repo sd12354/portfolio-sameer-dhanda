@@ -45,20 +45,14 @@ const projects = [
     screenshots: ['/applyflow-1.png', '/applyflow-2.png', '/applyflow-3.png'],
   },
   {
-    id: 'react-firebase',
-    title: 'React + Firebase Apps',
+    id: 'studysync',
+    title: 'StudySync (iOS)',
+    developmentLabel: 'Still in development',
     description:
-      'A collection of data-intensive apps featuring real-time database pipelines, SQL-style data modeling, and automated quality testing.',
-    tags: ['React', 'Firebase', 'TypeScript', 'SQL'],
-    liveUrl: null,
-  },
-  {
-    id: 'double-edge',
-    title: 'Double Edge',
-    description:
-      'Web app to visualize California wildfire impact on housing — APIs, data visualization, and an end-to-end user experience.',
-    tags: ['React', 'Data Viz', 'REST API', 'Maps'],
-    liveUrl: null,
+      'Campus-focused iOS app that helps students create, discover, and join in-person study sessions with Firebase Authentication and Firestore-powered real-time session updates.',
+    tags: ['SwiftUI', 'iOS', 'Firebase Auth', 'Firestore', 'MVVM'],
+    links: [{ url: 'https://github.com/sd12354/Unit-7-Group-Milestone-1', label: 'GitHub Repo' }],
+    previewVideoPath: '/studysync-demo.mov',
   },
 ];
 
@@ -113,8 +107,7 @@ function Projects() {
         <motion.h2
           className="section-title projects-title"
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
+          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Featured Projects
@@ -144,7 +137,14 @@ function Projects() {
                 transition={{ duration: 0.2 }}
               >
                 <header className="project-card__header">
-                  <h3 className="project-card__title">{project.title}</h3>
+                  <div className="project-card__title-block">
+                    <h3 className="project-card__title">{project.title}</h3>
+                    {project.developmentLabel ? (
+                      <span className="project-card__dev-badge" role="status">
+                        {project.developmentLabel}
+                      </span>
+                    ) : null}
+                  </div>
                   {project.links?.length ? (
                     <div className="project-card__actions">
                       {project.links.map((link) => (

@@ -1,4 +1,5 @@
 import './About.css';
+import { HiExternalLink } from 'react-icons/hi';
 import { LuBriefcase } from 'react-icons/lu';
 import { motion, useReducedMotion } from 'motion/react';
 
@@ -57,32 +58,46 @@ function About() {
           </div>
           <div className="about-copy">
             <p>
-              I&apos;m a junior Computer Science student at Howard University, based in Boston, MA and
-              Washington, DC, with hands-on engineering experience at the NBA and a health-tech
-              startup. I care about writing code that&apos;s intentional — systems that scale, data
-              that&apos;s reliable, and products people actually use.
+              I&apos;m a junior Computer Science student at Howard University, based in Boston and
+              Washington, DC. I&apos;ve worked in engineering at the NBA and at a health tech startup.
+              I like building products that are useful, reliable, and easy to maintain.
             </p>
             <p>
-              When I&apos;m not building, I&apos;m leading, organizing, and pushing things forward on
-              campus.
+              Outside of coding, I spend a lot of time leading student organizations and helping move
+              projects forward on campus.
             </p>
+            <p className="about-copy__creative">
+              I also work in graphics, UI design, and photography. That creative side helps me think
+              more clearly about user experience and storytelling.
+            </p>
+            <motion.a
+              href="https://sameerdhanda.myportfolio.com/home"
+              className="about-portfolio-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={reduceMotion ? undefined : { y: -2, scale: 1.01 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <HiExternalLink className="about-portfolio-cta__icon" aria-hidden />
+              View creative portfolio
+            </motion.a>
             <div className="about-leadership">
               <h3 className="about-leadership__title">Leadership</h3>
               <ul className="about-leadership__list">
                 <li>
-                  Google Student Developer Club — <strong>Freshman Liaison</strong> (2023–24)
+                  Google Student Developer Club, <strong>Freshman Liaison</strong> (2023-24)
                 </li>
                 <li>
-                  Men of George Washington Carver Inc. — <strong>Co-Chair of Public Relations</strong>{' '}
-                  (May 2024 – April 2025)
+                  Men of George Washington Carver Inc., <strong>Co-Chair of Public Relations</strong>{' '}
+                  (May 2024 to April 2025)
                 </li>
                 <li>
-                  DC HBCU Inc. — <strong>Public Relations Chair</strong> (January 2025 – October 2025);
+                  DC HBCU Inc., <strong>Public Relations Chair</strong> (January 2025 to October 2025);
                   nonprofit supporting the local DC community
                 </li>
                 <li>
-                  College of Engineering &amp; Architecture — <strong>Social Media Coordinator</strong>{' '}
-                  (2025–26)
+                  College of Engineering &amp; Architecture, <strong>Social Media Coordinator</strong>{' '}
+                  (2025-26)
                 </li>
               </ul>
             </div>

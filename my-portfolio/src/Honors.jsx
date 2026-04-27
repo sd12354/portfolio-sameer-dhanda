@@ -9,10 +9,9 @@ const honors = [
     id: 'bisonbytes-double-edge',
     icon: FaAward,
     title: 'BisonBytes 2024 · 2nd Place Winner (Fintech Track)',
-    subtitle: 'Created Double Edge',
+    subtitle:
+      'Built Double Edge, a data-driven web app focused on housing and wildfire impact insights, and placed 2nd for product execution, technical depth, and presentation.',
     variant: 'sky',
-    url: 'https://doubleedge.netlify.app/home',
-    urlLabel: 'View',
   },
   {
     id: 'nba-fellow',

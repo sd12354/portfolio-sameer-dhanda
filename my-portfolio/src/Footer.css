@@ -1,7 +1,7 @@
 .site-footer {
-  padding: 1.5rem 0 2.25rem;
+  padding: 1.1rem 0 2rem;
   text-align: center;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid color-mix(in srgb, var(--border-subtle) 60%, transparent);
   background: var(--surface-muted);
 }
 
