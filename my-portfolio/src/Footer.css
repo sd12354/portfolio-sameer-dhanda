@@ -1,12 +1,33 @@
 .site-footer {
-  padding: 1.1rem 0 2rem;
-  text-align: center;
-  border-top: 1px solid color-mix(in srgb, var(--border-subtle) 60%, transparent);
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 1.35rem 0 2.25rem;
+  border-top: 1px solid var(--border-subtle);
   background: var(--surface-muted);
 }
 
+.site-footer__inner {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .site-footer__text {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 36rem;
   font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--text-muted);
+}
+
+/* Align with main column; avoid decorative cursor reading as UI in the footer */
+@media (hover: hover) and (pointer: fine) {
+  .site-footer,
+  .site-footer * {
+    cursor: auto !important;
+  }
+
+  .app-shell:has(.site-footer:hover) .custom-cursor {
+    opacity: 0 !important;
+    transform: scale(0.5);
+  }
 }
