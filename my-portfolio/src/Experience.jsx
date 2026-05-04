@@ -8,6 +8,8 @@ const experiences = [
     company: 'National Basketball Association',
     location: 'New York, NY',
     date: 'Jun – Aug 2025',
+    logoSrc: '/nba-logo.png',
+    logoAlt: 'NBA',
     bullets: [
       'Collaborated with product designers and engineers to improve digital assets and user-facing experiences.',
       'Partnered across teams to ship updates to digital products and streamline technical operations.',
@@ -19,6 +21,8 @@ const experiences = [
     company: 'Altoida',
     location: 'Remote / Boston, MA',
     date: 'May – Aug 2024',
+    logoSrc: '/altoida-logo.png',
+    logoAlt: 'Altoida',
     bullets: [
       'Built and maintained automated backend API tests that improved reliability and team velocity.',
       'Worked in an agile environment shipping incremental improvements with clear ownership.',
@@ -74,9 +78,20 @@ function Experience() {
                 >
                   <header className="experience-card-header">
                     <h3 className="experience-job-title">{job.title}</h3>
-                    <div className="experience-date">
-                      <HiCalendar className="experience-date-icon" aria-hidden />
-                      <span>{job.date}</span>
+                    <div className="experience-card-meta">
+                      <div className="experience-date">
+                        <HiCalendar className="experience-date-icon" aria-hidden />
+                        <span>{job.date}</span>
+                      </div>
+                      {job.logoSrc ? (
+                        <img
+                          src={job.logoSrc}
+                          alt={job.logoAlt ?? ''}
+                          className="experience-card-logo"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : null}
                     </div>
                   </header>
                   <p className="experience-company">{job.company}</p>

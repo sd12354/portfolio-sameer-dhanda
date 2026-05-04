@@ -102,6 +102,25 @@
   margin-bottom: 0.35rem;
 }
 
+.experience-card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.experience-card-logo {
+  display: block;
+  height: auto;
+  max-height: 2.5rem;
+  width: auto;
+  max-width: 9.5rem;
+  object-fit: contain;
+  object-position: right center;
+}
+
 .experience-job-title {
   margin: 0;
   font-size: 1.05rem;
@@ -180,6 +199,11 @@
 @media (max-width: 600px) {
   .experience-card-header {
     flex-direction: column;
+  }
+
+  .experience-card-meta {
+    align-self: flex-end;
+    width: 100%;
   }
 
   .experience-line {
