@@ -95,30 +95,51 @@
 
 .experience-card-header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
   margin-bottom: 0.35rem;
 }
 
-.experience-card-meta {
+.experience-card-top {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.55rem;
-  flex-shrink: 0;
-  text-align: right;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
 }
 
 .experience-card-logo {
   display: block;
   height: auto;
-  max-height: 2.5rem;
+  max-height: 2.75rem;
   width: auto;
-  max-width: 9.5rem;
+  max-width: 11rem;
   object-fit: contain;
-  object-position: right center;
+  object-position: left center;
+  align-self: flex-start;
+}
+
+.experience-card-logo--nba {
+  max-height: 3.25rem;
+  max-width: 12rem;
+}
+
+.experience-card-logo--altoida {
+  max-height: 1.95rem;
+  max-width: 7.5rem;
+}
+
+.experience-card-logo-link {
+  align-self: flex-start;
+  display: inline-block;
+  line-height: 0;
+  border-radius: 6px;
+}
+
+.experience-card-logo-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .experience-job-title {
@@ -197,15 +218,6 @@
 }
 
 @media (max-width: 600px) {
-  .experience-card-header {
-    flex-direction: column;
-  }
-
-  .experience-card-meta {
-    align-self: flex-end;
-    width: 100%;
-  }
-
   .experience-line {
     left: 10px;
   }
@@ -220,5 +232,20 @@
 
   .experience-job-title {
     max-width: none;
+  }
+
+  .experience-card-logo {
+    max-height: 2.4rem;
+    max-width: 10rem;
+  }
+
+  .experience-card-logo--nba {
+    max-height: 2.85rem;
+    max-width: 11rem;
+  }
+
+  .experience-card-logo--altoida {
+    max-height: 1.75rem;
+    max-width: 7rem;
   }
 }

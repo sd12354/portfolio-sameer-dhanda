@@ -45,6 +45,17 @@ const projects = [
     screenshots: ['/applyflow-1.png', '/applyflow-2.png', '/applyflow-3.png'],
   },
   {
+    id: 'film-vault',
+    title: 'Film Vault',
+    description:
+      'Full-stack web app for cataloging physical DVD collections: barcode scanning, TMDB-powered metadata, Firebase auth and storage, collaborative collections with role-based sharing, and a PWA-oriented setup for mobile.',
+    tags: ['React', 'TypeScript', 'Firebase', 'TMDB', 'PWA'],
+    links: [
+      { url: 'https://film-vault.com/', label: 'Visit Site' },
+      { url: 'https://github.com/sd12354/FilmVault', label: 'GitHub Repo' },
+    ],
+  },
+  {
     id: 'studysync',
     title: 'StudySync (iOS)',
     developmentLabel: 'Still in development',
