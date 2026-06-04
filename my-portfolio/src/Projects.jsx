@@ -5,6 +5,17 @@ import { useState } from 'react';
 
 const projects = [
   {
+    id: 'vinylvault',
+    title: 'VinylVault',
+    description:
+      'Full-stack vinyl catalogue manager that combines live Discogs & eBay market data with AI-powered pricing and listing descriptions, then helps import your collection, auto-price every record, and list to eBay & Discogs in one click.',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Discogs & eBay APIs', 'AI Pricing'],
+    links: [
+      { url: 'https://album-manager-neon.vercel.app/', label: 'Visit Site' },
+      { url: 'https://github.com/sd12354/Album-Manager', label: 'GitHub Repo' },
+    ],
+  },
+  {
     id: 'translateme-ios',
     title: 'TranslateMe (iOS)',
     description:
