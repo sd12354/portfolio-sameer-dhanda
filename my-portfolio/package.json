@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@cursorify/react": "^0.0.43",
+    "@vercel/analytics": "^2.0.1",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "motion": "^12.23.12",
