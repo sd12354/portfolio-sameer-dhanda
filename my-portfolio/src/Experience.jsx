@@ -1,8 +1,27 @@
 import './Experience.css';
+import { useRef } from 'react';
 import { HiCalendar } from 'react-icons/hi';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react';
+import Tilt from './magicui/Tilt';
+import TextAnimate from './magicui/TextAnimate';
 
 const experiences = [
+  {
+    title: 'AI Intern',
+    company: 'Baobab',
+    location: 'Boston, MA',
+    date: 'Jun 2026 – Present',
+    logoSrc: '/baobab-logo.png',
+    logoAlt: 'Baobab',
+    logoHref: 'https://www.baobab.bio/',
+    logoVariant: 'baobab',
+    bullets: [
+      'Early team member at a startup AI biotech company building foundation models for DNA.',
+      'Helping build the MVP for an AI recombination model from the ground up.',
+      'Working full-stack across frontend and backend to ship core product features.',
+      'Leveraging AI tooling such as Claude Code to accelerate development and iteration.',
+    ],
+  },
   {
     title: 'DTC Product & Tech Ops Intern',
     company: 'National Basketball Association',
@@ -37,21 +56,26 @@ const experiences = [
 
 function Experience() {
   const reduceMotion = useReducedMotion();
+  const timelineRef = useRef(null);
+
+  // The timeline line draws itself downward as the section scrolls through view
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 0.8', 'end 0.45'],
+  });
+  const lineScale = useSpring(scrollYProgress, { stiffness: 140, damping: 30 });
 
   return (
     <section id="experience" className="experience-section">
       <div className="experience-inner">
-        <motion.h2
-          className="section-title"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5 }}
-        >
-          Experience
-        </motion.h2>
-        <div className="experience-timeline">
+        <TextAnimate className="section-title">Experience</TextAnimate>
+        <div className="experience-timeline" ref={timelineRef}>
           <div className="experience-line" aria-hidden />
+          <motion.div
+            className="experience-line experience-line--progress"
+            style={reduceMotion ? undefined : { scaleY: lineScale }}
+            aria-hidden
+          />
           <motion.ul
             className="experience-list"
             initial={reduceMotion ? false : 'hidden'}
@@ -89,7 +113,8 @@ function Experience() {
                   <div className="experience-node" aria-hidden>
                     <span className="experience-node-dot" />
                   </div>
-                  <motion.article
+                  <Tilt
+                    as={motion.article}
                     className="experience-card"
                     whileHover={reduceMotion ? undefined : { y: -2 }}
                     transition={{ duration: 0.2 }}
@@ -122,7 +147,7 @@ function Experience() {
                         <li key={b}>{b}</li>
                       ))}
                     </ul>
-                  </motion.article>
+                  </Tilt>
                 </motion.li>
               );
             })}

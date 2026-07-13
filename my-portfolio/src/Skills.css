@@ -119,3 +119,83 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---- Orbiting tech stack (MagicUI) ---- */
+.skills-orbit {
+  position: relative;
+  width: min(100%, 320px);
+  height: 320px;
+  margin: 0.5rem auto 2.25rem;
+}
+
+.skills-orbit__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  border: 1px dashed rgba(37, 99, 235, 0.22);
+  pointer-events: none;
+}
+
+[data-theme='dark'] .skills-orbit__ring {
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+.skills-orbit__ring--outer {
+  width: 256px;
+  height: 256px;
+}
+
+.skills-orbit__ring--inner {
+  width: 148px;
+  height: 148px;
+}
+
+.skills-orbit__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--card);
+  border: 2px solid var(--border-subtle);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.18);
+}
+
+.skills-orbit__center img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Pixel-art portrait: keep edges crisp instead of smoothing */
+  image-rendering: pixelated;
+  /* Zoom toward the face in the upper half of the artwork */
+  transform: scale(1.35);
+  transform-origin: 50% 28%;
+}
+
+.skills-orbit .mui-orbit-item {
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+  color: var(--text-primary);
+}
+
+.skills-orbit .mui-orbit-item svg {
+  width: 52%;
+  height: 52%;
+}
+
+@media (max-width: 420px) {
+  .skills-orbit {
+    transform: scale(0.85);
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+  }
+}

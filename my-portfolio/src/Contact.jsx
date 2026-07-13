@@ -3,6 +3,11 @@ import { HiMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiDocumentText } from 'react-icons/hi';
 import { motion, useReducedMotion } from 'motion/react';
+import LinkedInBadge from './LinkedInBadge';
+import GitHubActivity from './GitHubActivity';
+import SparklesText from './magicui/SparklesText';
+import AnimatedShinyText from './magicui/AnimatedShinyText';
+import { Dock, DockIcon } from './magicui/Dock';
 
 function Contact() {
   const reduceMotion = useReducedMotion();
@@ -17,9 +22,11 @@ function Contact() {
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.55 }}
       >
-        <motion.h2 className="contact-heading">Let&apos;s Work Together</motion.h2>
+        <motion.h2 className="contact-heading">
+          <SparklesText>Let&apos;s Work Together</SparklesText>
+        </motion.h2>
         <motion.p className="contact-status">
-          Open to internship opportunities · May 2026
+          <AnimatedShinyText>Open to internship opportunities · Fall 2026</AnimatedShinyText>
         </motion.p>
         <motion.a
           href="mailto:sameer.dhanda@bison.howard.edu"
@@ -30,37 +37,31 @@ function Contact() {
           sameer.dhanda@bison.howard.edu
         </motion.a>
         <div className="contact-social">
-          <motion.a
-            href="https://github.com/sd12354"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-social-btn"
-            aria-label="GitHub"
-            whileHover={reduceMotion ? undefined : { y: -2, scale: 1.03 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-          >
-            <FaGithub />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/sameer-dhanda-b97437224/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-social-btn"
-            aria-label="LinkedIn"
-            whileHover={reduceMotion ? undefined : { y: -2, scale: 1.03 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-          >
-            <FaLinkedin />
-          </motion.a>
-          <motion.a
-            href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
-            className="contact-social-btn"
-            aria-label="Request resume"
-            whileHover={reduceMotion ? undefined : { y: -2, scale: 1.03 }}
-            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-          >
-            <HiDocumentText />
-          </motion.a>
+          <Dock>
+            <DockIcon href="https://github.com/sd12354" label="GitHub" external>
+              <FaGithub />
+            </DockIcon>
+            <DockIcon
+              href="https://www.linkedin.com/in/sameer-dhanda-b97437224/"
+              label="LinkedIn"
+              external
+            >
+              <FaLinkedin />
+            </DockIcon>
+            <DockIcon href="mailto:sameer.dhanda@bison.howard.edu" label="Email">
+              <HiMail />
+            </DockIcon>
+            <DockIcon
+              href="mailto:sameer.dhanda@bison.howard.edu?subject=Resume"
+              label="Request resume"
+            >
+              <HiDocumentText />
+            </DockIcon>
+          </Dock>
+        </div>
+        <div className="contact-live-row">
+          <GitHubActivity />
+          <LinkedInBadge />
         </div>
       </motion.div>
     </section>

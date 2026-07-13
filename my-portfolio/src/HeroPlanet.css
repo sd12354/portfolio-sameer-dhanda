@@ -1,0 +1,17 @@
+.hero-planet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8%;
+  width: 100%;
+  height: clamp(360px, 56vh, 640px);
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.hero-planet canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

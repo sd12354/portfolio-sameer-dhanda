@@ -3,8 +3,18 @@ import { FaBasketballBall, FaGraduationCap, FaAward } from 'react-icons/fa';
 import { BiLogoAdobe } from 'react-icons/bi';
 import { motion, useReducedMotion } from 'motion/react';
 import { HiExternalLink } from 'react-icons/hi';
+import Tilt from './magicui/Tilt';
+import TextAnimate from './magicui/TextAnimate';
 
 const honors = [
+  {
+    id: 'last-mile-fund',
+    icon: FaGraduationCap,
+    title: 'Last Mile Fund · Spring 2026 Scholarship Recipient',
+    subtitle:
+      'Awarded to high-achieving students near the finish line of their degree, the Last Mile Fund scholarship helps cover remaining college costs and removes financial barriers to graduation.',
+    variant: 'lavender',
+  },
   {
     id: 'bisonbytes-double-edge',
     icon: FaAward,
@@ -50,27 +60,20 @@ function Honors() {
   return (
     <section id="honors" className="honors-section">
       <div className="honors-inner">
-        <motion.h2
-          className="section-title honors-title"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5 }}
-        >
-          Honors & Recognition
-        </motion.h2>
+        <TextAnimate className="section-title honors-title">Honors & Recognition</TextAnimate>
         <motion.div
           className="honors-grid"
           initial={reduceMotion ? false : 'hidden'}
           whileInView={reduceMotion ? undefined : 'show'}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.08 } },
+            show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
           }}
         >
           {honors.map(({ id, icon: Icon, title, subtitle, variant, url, urlLabel }) => (
-            <motion.article
+            <Tilt
+              as={motion.article}
               key={id}
               className={`honors-card honors-card--${variant}`}
               variants={{
@@ -97,7 +100,7 @@ function Honors() {
                   </a>
                 ) : null}
               </div>
-            </motion.article>
+            </Tilt>
           ))}
         </motion.div>
       </div>

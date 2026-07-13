@@ -114,6 +114,12 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    animation: none;
+  }
+}
+
 @media (max-width: 768px) {
   .orb {
     filter: blur(48px);

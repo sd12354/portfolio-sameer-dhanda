@@ -5,17 +5,13 @@ import { HiMoon, HiSun } from 'react-icons/hi2';
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
   { id: 'honors', label: 'Honors' },
   { id: 'contact', label: 'Contact' },
 ];
 
-const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, toggleTheme }) => {
-  const closeMenu = () => {
-    if (isMenuOpen) toggleMenu();
-  };
-
+const Navbar = ({ activeLink, setActiveLink, theme, toggleTheme }) => {
   return (
     <header className="site-header">
       <nav className="navbar" aria-label="Main">
@@ -23,17 +19,14 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
           href="#home"
           className="navbar-brand navbar-gradient-ring"
           aria-label="Sameer Dhanda — Home"
-          onClick={() => {
-            setActiveLink('home');
-            closeMenu();
-          }}
+          onClick={() => setActiveLink('home')}
         >
           <span className="navbar-brand-text">
             <span className="navbar-brand-name">Sameer Dhanda</span>
           </span>
         </a>
 
-        <ul className={`nav-links ${isMenuOpen ? 'nav-links--open' : ''}`}>
+        <ul className="nav-links">
           {NAV_LINKS.map(({ id, label }) => (
             <li key={id}>
               <a
@@ -43,10 +36,7 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
                     ? 'nav-link nav-link--active navbar-gradient-ring'
                     : 'nav-link navbar-gradient-ring'
                 }
-                onClick={() => {
-                  setActiveLink(id);
-                  closeMenu();
-                }}
+                onClick={() => setActiveLink(id)}
               >
                 {label}
               </a>
@@ -96,18 +86,6 @@ const Navbar = ({ isMenuOpen, toggleMenu, activeLink, setActiveLink, theme, togg
               </span>
             </button>
           </div>
-
-          <button
-            type="button"
-            className={`nav-toggle navbar-gradient-ring ${isMenuOpen ? 'nav-toggle--open' : ''}`}
-            onClick={toggleMenu}
-            aria-expanded={isMenuOpen}
-            aria-label="Toggle menu"
-          >
-            <span className="nav-toggle-bar" />
-            <span className="nav-toggle-bar" />
-            <span className="nav-toggle-bar" />
-          </button>
         </div>
       </nav>
     </header>

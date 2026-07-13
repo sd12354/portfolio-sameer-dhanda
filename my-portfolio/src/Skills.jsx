@@ -1,9 +1,20 @@
 import './Skills.css';
 import { HiCode } from 'react-icons/hi';
 import { TbCube } from 'react-icons/tb';
-import { FaDatabase, FaCloud } from 'react-icons/fa';
+import { FaDatabase, FaCloud, FaReact, FaPython, FaJava, FaAws } from 'react-icons/fa';
 import { BsDiagram3 } from 'react-icons/bs';
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiPostgresql,
+  SiSwift,
+  SiFirebase,
+  SiTailwindcss,
+} from 'react-icons/si';
 import { motion, useReducedMotion } from 'motion/react';
+import OrbitingCircles from './magicui/OrbitingCircles';
+import Tilt from './magicui/Tilt';
+import TextAnimate from './magicui/TextAnimate';
 
 const categories = [
   {
@@ -40,15 +51,36 @@ function Skills() {
     <section id="skills" className="skills-section">
       <div className="skills-section__bg" aria-hidden />
       <div className="skills-inner">
-        <motion.h2
-          className="section-title skills-title"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        <TextAnimate className="section-title skills-title">Skills</TextAnimate>
+        <motion.div
+          className="skills-orbit"
+          role="img"
+          aria-label="Tech stack: React, TypeScript, Python, Next.js, Java, PostgreSQL, Swift, AWS, Firebase, Tailwind CSS"
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          Skills
-        </motion.h2>
+          <span className="skills-orbit__ring skills-orbit__ring--outer" aria-hidden />
+          <span className="skills-orbit__ring skills-orbit__ring--inner" aria-hidden />
+          <span className="skills-orbit__center" aria-hidden>
+            <img src="/pixel-sameer.png" alt="" />
+          </span>
+          <OrbitingCircles radius={128} duration={30} iconSize={44}>
+            <FaReact title="React" />
+            <SiTypescript title="TypeScript" />
+            <FaPython title="Python" />
+            <SiNextdotjs title="Next.js" />
+            <FaJava title="Java" />
+            <SiPostgresql title="PostgreSQL" />
+          </OrbitingCircles>
+          <OrbitingCircles radius={74} duration={22} iconSize={38} reverse>
+            <SiSwift title="Swift" />
+            <FaAws title="AWS" />
+            <SiFirebase title="Firebase" />
+            <SiTailwindcss title="Tailwind CSS" />
+          </OrbitingCircles>
+        </motion.div>
         <motion.div
           className="skills-grid"
           initial={reduceMotion ? false : 'hidden'}
@@ -60,7 +92,8 @@ function Skills() {
           }}
         >
           {categories.map(({ Icon, title, items }) => (
-            <motion.article
+            <Tilt
+              as={motion.article}
               key={title}
               className="skills-card"
               variants={{
@@ -81,7 +114,7 @@ function Skills() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </motion.article>
+            </Tilt>
           ))}
         </motion.div>
       </div>

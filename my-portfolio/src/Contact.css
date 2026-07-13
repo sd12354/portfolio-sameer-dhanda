@@ -5,6 +5,123 @@
   text-align: center;
 }
 
+/* ---- Live contact row: GitHub activity + LinkedIn card ---- */
+.contact-live-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  text-align: left;
+  align-items: stretch;
+}
+
+.contact-live-row > * {
+  margin-top: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+@media (max-width: 880px) {
+  .contact-live-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LinkedIn card frame */
+.linkedin-card {
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.linkedin-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.linkedin-card__icon {
+  font-size: 1.4rem;
+  color: #0a66c2;
+}
+
+.linkedin-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.linkedin-card__profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.linkedin-card__profile-link:hover {
+  opacity: 0.8;
+}
+
+.linkedin-card__profile-link svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.linkedin-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+  flex: 1;
+}
+
+/* Hide the raw "Sameer Dhanda" anchor LinkedIn injects while its iframe loads */
+.linkedin-badge .badge-base__link {
+  display: none !important;
+}
+
+.linkedin-badge__fallback {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.5rem 2rem;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.2s ease;
+}
+
+.linkedin-badge__fallback:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.linkedin-badge__fallback-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.linkedin-badge__fallback-cta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .contact-section__bg {
   position: absolute;
   inset: 0;
@@ -74,7 +191,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: #fff;
+  background: var(--card);
   color: var(--text-muted);
   box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
   border: 1px solid var(--border-subtle);

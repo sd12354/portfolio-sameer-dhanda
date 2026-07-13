@@ -1,0 +1,502 @@
+/* MagicUI components ported to plain CSS to match this codebase.
+   Original designs: https://magicui.design */
+
+/* ---- Scroll Progress ---- */
+.mui-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1500;
+  transform-origin: left;
+  background: linear-gradient(to right, #a97cf8, #f38cb8, #fdcc92);
+  pointer-events: none;
+}
+
+/* ---- Aurora Text ---- */
+.mui-aurora-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    100deg,
+    #2563eb 0%,
+    #7c3aed 28%,
+    #ec4899 52%,
+    #38bdf8 76%,
+    #2563eb 100%
+  );
+  background-size: 250% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: mui-aurora 7s ease-in-out infinite;
+}
+
+[data-theme='dark'] .mui-aurora-text {
+  background-image: linear-gradient(
+    100deg,
+    #60a5fa 0%,
+    #a78bfa 28%,
+    #f472b6 52%,
+    #7dd3fc 76%,
+    #60a5fa 100%
+  );
+}
+
+@keyframes mui-aurora {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mui-aurora-text {
+    animation: none;
+  }
+}
+
+/* ---- Word Rotate ---- */
+.mui-word-rotate {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-block: 0.08em;
+}
+
+/* ---- Meteors ---- */
+.mui-meteors {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mui-meteor {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.9);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  rotate: var(--mui-meteor-angle, 215deg);
+  animation: mui-meteor var(--mui-meteor-duration, 6s) linear infinite;
+  animation-delay: var(--mui-meteor-delay, 0s);
+  opacity: 0;
+}
+
+.mui-meteor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(100, 116, 139, 0.9), transparent);
+}
+
+[data-theme='dark'] .mui-meteor {
+  background: rgba(148, 163, 184, 0.95);
+}
+
+[data-theme='dark'] .mui-meteor::before {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.9), transparent);
+}
+
+@keyframes mui-meteor {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(-560px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mui-meteors {
+    display: none;
+  }
+}
+
+/* ---- Shimmer Button ---- */
+.mui-shimmer-btn {
+  --mui-shimmer-spread: 90deg;
+  --mui-shimmer-color: rgba(255, 255, 255, 0.95);
+  --mui-shimmer-radius: 10px;
+  --mui-shimmer-speed: 3.2s;
+  --mui-shimmer-cut: 1.5px;
+  --mui-shimmer-bg: #0f172a;
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: #fff;
+  border: none;
+  border-radius: var(--mui-shimmer-radius);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.mui-shimmer-btn::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  /* Oversized square so the rotating conic gradient always covers the corners */
+  top: 50%;
+  left: 50%;
+  width: max(300%, 12rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: conic-gradient(
+    from calc(270deg - (var(--mui-shimmer-spread) * 0.5)),
+    transparent 0deg,
+    var(--mui-shimmer-color) calc(var(--mui-shimmer-spread) * 0.5),
+    transparent var(--mui-shimmer-spread)
+  );
+  animation: mui-shimmer-spin var(--mui-shimmer-speed) linear infinite;
+}
+
+.mui-shimmer-btn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: var(--mui-shimmer-cut);
+  background: var(--mui-shimmer-bg);
+  border-radius: calc(var(--mui-shimmer-radius) - var(--mui-shimmer-cut));
+}
+
+.mui-shimmer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+}
+
+.mui-shimmer-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+[data-theme='dark'] .mui-shimmer-btn {
+  --mui-shimmer-bg: #1d4ed8;
+  --mui-shimmer-color: rgba(219, 234, 254, 0.95);
+}
+
+[data-theme='dark'] .mui-shimmer-btn:hover {
+  box-shadow: 0 8px 26px rgba(37, 99, 235, 0.4);
+}
+
+@keyframes mui-shimmer-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mui-shimmer-btn::before {
+    animation: none;
+  }
+}
+
+/* ---- Border Beam ---- */
+.mui-border-beam-wrap {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  border: var(--mui-beam-width, 1.5px) solid transparent;
+  -webkit-mask:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(#fff, #fff);
+  mask:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(#fff, #fff);
+  -webkit-mask-composite: source-in, xor;
+  mask-composite: intersect;
+}
+
+.mui-border-beam {
+  position: absolute;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    to left,
+    var(--mui-beam-from, #ffaa40),
+    var(--mui-beam-to, #9c40ff),
+    transparent
+  );
+}
+
+/* ---- Number Ticker ---- */
+.mui-number-ticker {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Orbiting Circles ---- */
+.mui-orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--mui-orbit-icon-size, 44px);
+  height: var(--mui-orbit-icon-size, 44px);
+  margin-top: calc(var(--mui-orbit-icon-size, 44px) / -2);
+  margin-left: calc(var(--mui-orbit-icon-size, 44px) / -2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  animation: mui-orbit var(--mui-orbit-duration, 24s) linear infinite;
+  animation-direction: var(--mui-orbit-direction, normal);
+}
+
+@keyframes mui-orbit {
+  0% {
+    transform: rotate(var(--mui-orbit-angle, 0deg))
+      translateY(calc(var(--mui-orbit-radius, 120px) * -1))
+      rotate(calc(var(--mui-orbit-angle, 0deg) * -1));
+  }
+  100% {
+    transform: rotate(calc(var(--mui-orbit-angle, 0deg) + 360deg))
+      translateY(calc(var(--mui-orbit-radius, 120px) * -1))
+      rotate(calc((var(--mui-orbit-angle, 0deg) + 360deg) * -1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mui-orbit-item {
+    animation-play-state: paused;
+  }
+}
+
+/* ---- Magic Card ---- */
+.mui-magic-card {
+  position: relative;
+}
+
+.mui-magic-card:hover {
+  border-color: transparent;
+}
+
+.mui-magic-card__border,
+.mui-magic-card__bg,
+.mui-magic-card__spotlight {
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.mui-magic-card__border {
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mui-magic-card__bg {
+  inset: 1px;
+  z-index: 1;
+  border-radius: calc(16px - 1px);
+  background: var(--card);
+}
+
+.mui-magic-card__spotlight {
+  inset: 1px;
+  z-index: 2;
+  border-radius: calc(16px - 1px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mui-magic-card:hover .mui-magic-card__border,
+.mui-magic-card:hover .mui-magic-card__spotlight {
+  opacity: 1;
+}
+
+.mui-magic-card__content {
+  position: relative;
+  z-index: 3;
+}
+
+/* ---- Sparkles Text ---- */
+.mui-sparkles-text {
+  position: relative;
+  display: inline-block;
+}
+
+.mui-sparkle {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Typing Animation ---- */
+.mui-typing__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: var(--accent);
+  animation: mui-caret-blink 0.9s step-end infinite;
+}
+
+.mui-typing__caret--done {
+  animation: mui-caret-blink 0.9s step-end 4 forwards;
+  /* Caret fades away shortly after the sentence completes */
+  opacity: 0;
+}
+
+@keyframes mui-caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- Animated Shiny Text ---- */
+.mui-shiny-text {
+  background: linear-gradient(
+    115deg,
+    currentColor 42%,
+    rgba(255, 255, 255, 0.95) 50%,
+    currentColor 58%
+  );
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: inherit;
+  animation: mui-shine 3.2s linear infinite;
+}
+
+[data-theme='dark'] .mui-shiny-text {
+  background-image: linear-gradient(
+    115deg,
+    currentColor 42%,
+    rgba(255, 255, 255, 0.8) 50%,
+    currentColor 58%
+  );
+}
+
+@keyframes mui-shine {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mui-shiny-text {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+/* ---- Hyper Text ---- */
+.mui-hyper-text {
+  font-variant-ligatures: none;
+}
+
+/* ---- Box Reveal ---- */
+.mui-box-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.mui-box-reveal__box {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+/* ---- Smooth Cursor ---- */
+.mui-smooth-cursor {
+  position: fixed;
+  top: -11px;
+  left: -11px;
+  z-index: 3000;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.mui-smooth-cursor__fill {
+  fill: var(--text-primary);
+  stroke: var(--surface);
+  filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.35));
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .mui-smooth-cursor {
+    display: none;
+  }
+}
+
+/* ---- Dock ---- */
+.mui-dock {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  height: calc(44px + 1.15rem);
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: visible;
+}
+
+[data-theme='dark'] .mui-dock {
+  background: rgba(15, 23, 42, 0.7);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
+}
+
+.mui-dock__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.mui-dock__icon:hover {
+  color: var(--accent);
+}
+
+.mui-dock__icon svg {
+  width: 46%;
+  height: 46%;
+}

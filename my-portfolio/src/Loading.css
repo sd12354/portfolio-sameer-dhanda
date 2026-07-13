@@ -1,0 +1,185 @@
+.loading-intro {
+  position: fixed;
+  inset: 0;
+  /* Above navbar (1000) and theme overlay (2500), below the smooth cursor (3000) */
+  z-index: 2900;
+  pointer-events: auto;
+}
+
+.loading-intro__panel {
+  position: absolute;
+  inset: 0;
+}
+
+/* Accent curtain revealed for a beat as the main panel lifts */
+.loading-intro__panel--accent {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 55%, #ec4899 100%);
+}
+
+.loading-intro__panel--main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Mirrors the hero wash so the reveal feels seamless */
+  background: linear-gradient(
+    125deg,
+    #e0f2fe 0%,
+    #f0f9ff 22%,
+    #faf5ff 52%,
+    #ecfdf5 78%,
+    #f8fafc 100%
+  );
+}
+
+[data-theme='dark'] .loading-intro__panel--main {
+  background: linear-gradient(
+    130deg,
+    #020617 0%,
+    #0b1220 24%,
+    #111827 52%,
+    #0f172a 78%,
+    #050b16 100%
+  );
+}
+
+.loading-intro__aura {
+  position: absolute;
+  inset: -15%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 35%, rgba(125, 211, 252, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 72% 60%, rgba(196, 181, 253, 0.32) 0%, transparent 48%),
+    radial-gradient(circle at 55% 20%, rgba(251, 207, 232, 0.25) 0%, transparent 42%);
+  animation: loading-aura-drift 6s ease-in-out infinite alternate;
+}
+
+[data-theme='dark'] .loading-intro__aura {
+  background:
+    radial-gradient(circle at 30% 35%, rgba(59, 130, 246, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 72% 60%, rgba(139, 92, 246, 0.2) 0%, transparent 48%),
+    radial-gradient(circle at 55% 20%, rgba(236, 72, 153, 0.14) 0%, transparent 42%);
+}
+
+@keyframes loading-aura-drift {
+  from {
+    transform: translate3d(-2%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 3%, 0) scale(1.06);
+  }
+}
+
+.loading-intro__content {
+  position: relative;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.loading-intro__name {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 9vw, 4.8rem);
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  animation: loading-name-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.loading-intro__role {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--text-muted, #64748b);
+  animation: loading-fade-in 0.7s ease 0.65s both;
+}
+
+.loading-intro__counter {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 3rem);
+  bottom: clamp(0.9rem, 3.5vh, 2.2rem);
+  font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+  font-size: clamp(4rem, 11vw, 7.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary, #0f172a);
+  opacity: 0.9;
+  animation: loading-fade-in 0.6s ease 0.35s both;
+}
+
+.loading-intro__percent {
+  font-size: 0.32em;
+  font-weight: 700;
+  vertical-align: 0.18em;
+  margin-left: 0.08em;
+  color: var(--text-muted, #64748b);
+}
+
+.loading-intro__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  transform-origin: left;
+  background: linear-gradient(to right, #a97cf8, #f38cb8, #fdcc92);
+}
+
+@keyframes loading-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes loading-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+/* ---- Exit: content lifts away, then the curtains follow ---- */
+.loading-intro--exit {
+  pointer-events: none;
+}
+
+.loading-intro--exit .loading-intro__content,
+.loading-intro--exit .loading-intro__counter {
+  animation: loading-content-out 0.38s cubic-bezier(0.55, 0, 0.55, 0.2) forwards;
+}
+
+.loading-intro--exit .loading-intro__panel--main {
+  animation: loading-curtain 0.78s cubic-bezier(0.76, 0, 0.24, 1) 0.18s forwards;
+}
+
+.loading-intro--exit .loading-intro__panel--accent {
+  animation: loading-curtain 0.78s cubic-bezier(0.76, 0, 0.24, 1) 0.3s forwards;
+}
+
+@keyframes loading-content-out {
+  to {
+    opacity: 0;
+    transform: translateY(-36px);
+    filter: blur(8px);
+  }
+}
+
+@keyframes loading-curtain {
+  to {
+    transform: translateY(-100%);
+  }
+}

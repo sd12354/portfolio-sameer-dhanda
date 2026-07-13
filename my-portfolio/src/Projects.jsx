@@ -2,11 +2,15 @@ import './Projects.css';
 import { HiChevronLeft, HiChevronRight, HiExternalLink } from 'react-icons/hi';
 import { motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
+import MagicCard from './magicui/MagicCard';
+import TextAnimate from './magicui/TextAnimate';
+import HyperText from './magicui/HyperText';
 
 const projects = [
   {
     id: 'vinylvault',
     title: 'VinylVault',
+    developmentLabel: 'Still in development',
     description:
       'Full-stack vinyl catalogue manager that combines live Discogs & eBay market data with AI-powered pricing and listing descriptions, then helps import your collection, auto-price every record, and list to eBay & Discogs in one click.',
     tags: ['Next.js', 'TypeScript', 'Supabase', 'Discogs & eBay APIs', 'AI Pricing'],
@@ -14,6 +18,7 @@ const projects = [
       { url: 'https://album-manager-neon.vercel.app/', label: 'Visit Site' },
       { url: 'https://github.com/sd12354/Album-Manager', label: 'GitHub Repo' },
     ],
+    screenshots: ['/vinylvault-1.png', '/vinylvault-2.png', '/vinylvault-3.png'],
   },
   {
     id: 'translateme-ios',
@@ -46,6 +51,7 @@ const projects = [
   {
     id: 'applyflow',
     title: 'ApplyFlow',
+    developmentLabel: 'Still in development',
     description:
       'Full-stack app that turns job-search emails into a Kanban application pipeline — connects Gmail via OAuth, syncs and classifies emails, and lets you manage applications with drag-and-drop and edits.',
     tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Google OAuth'],
@@ -94,13 +100,19 @@ function ProjectMediaCarousel({ projectTitle, screenshots }) {
           loading="lazy"
         />
       </div>
-      <button type="button" className="project-carousel__nav project-carousel__nav--left" onClick={goPrev}>
+      <button
+        type="button"
+        className="project-carousel__nav project-carousel__nav--left"
+        onClick={goPrev}
+        aria-label={`Previous ${projectTitle} screenshot`}
+      >
         <HiChevronLeft aria-hidden />
       </button>
       <button
         type="button"
         className="project-carousel__nav project-carousel__nav--right"
         onClick={goNext}
+        aria-label={`Next ${projectTitle} screenshot`}
       >
         <HiChevronRight aria-hidden />
       </button>
@@ -126,22 +138,15 @@ function Projects() {
     <section id="projects" className="projects-section">
       <div className="projects-section__bg" aria-hidden />
       <div className="projects-inner">
-        <motion.h2
-          className="section-title projects-title"
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Featured Projects
-        </motion.h2>
+        <TextAnimate className="section-title projects-title">Featured Projects</TextAnimate>
         <motion.ul
           className="projects-list"
           initial={reduceMotion ? false : 'hidden'}
           whileInView={reduceMotion ? undefined : 'show'}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.08 }}
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.1 } },
+            show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
           }}
         >
           {projects.map((project) => (
@@ -153,14 +158,17 @@ function Projects() {
               }}
               transition={{ duration: 0.45 }}
             >
-              <motion.article
-                className="project-card"
+              <motion.div
                 whileHover={reduceMotion ? undefined : { y: -3 }}
                 transition={{ duration: 0.2 }}
               >
+                <MagicCard className="project-card">
+                  <article>
                 <header className="project-card__header">
                   <div className="project-card__title-block">
-                    <h3 className="project-card__title">{project.title}</h3>
+                    <h3 className="project-card__title">
+                      <HyperText>{project.title}</HyperText>
+                    </h3>
                     {project.developmentLabel ? (
                       <span className="project-card__dev-badge" role="status">
                         {project.developmentLabel}
@@ -227,7 +235,9 @@ function Projects() {
                     <li key={tag}>{tag}</li>
                   ))}
                 </ul>
-              </motion.article>
+                  </article>
+                </MagicCard>
+              </motion.div>
             </motion.li>
           ))}
         </motion.ul>

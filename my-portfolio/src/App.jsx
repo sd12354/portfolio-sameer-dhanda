@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import './App.css';
 import Navbar from './Navbar';
 import Home from './Home';
@@ -11,18 +12,22 @@ import Contact from './Contact';
 import Loading from './Loading';
 import Footer from './Footer';
 import FloatingOrbs from './FloatingOrbs';
+import BentoView from './BentoView';
+import ScrollProgress from './magicui/ScrollProgress';
+import SmoothCursor from './magicui/SmoothCursor';
+import SmoothScroll from './SmoothScroll';
 
-const SECTION_IDS = ['home', 'about', 'experience', 'skills', 'projects', 'honors', 'contact'];
+const SECTION_IDS = ['home', 'about', 'experience', 'projects', 'skills', 'honors', 'contact'];
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
-  const [theme, setTheme] = useState('light');
-  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Resolve the theme synchronously so the intro loader renders in the right
+  // mode from the very first frame (no light flash for dark-mode users)
+  const [theme, setTheme] = useState(() => {
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,75 +50,84 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') {
-      setTheme(stored);
-      return;
-    }
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(prefersDark ? 'dark' : 'light');
-  }, []);
-
-  useEffect(() => {
     window.localStorage.setItem('theme', theme);
   }, [theme]);
 
-  useEffect(() => {
-    const onMove = (e) => {
-      setCursor({ x: e.clientX, y: e.clientY, visible: true });
-    };
-    const onLeave = () => setCursor((prev) => ({ ...prev, visible: false }));
-    const onEnter = () => setCursor((prev) => ({ ...prev, visible: true }));
+  const toggleTheme = (event) => {
+    const next = theme === 'light' ? 'dark' : 'light';
+    const prefersReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    window.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseleave', onLeave);
-    document.addEventListener('mouseenter', onEnter);
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseleave', onLeave);
-      document.removeEventListener('mouseenter', onEnter);
-    };
-  }, []);
+    if (prefersReduced || !document.startViewTransition) {
+      setTheme(next);
+      return;
+    }
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    // Circular reveal expanding from the toggle button
+    const rect = event?.currentTarget?.getBoundingClientRect();
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth - 40;
+    const y = rect ? rect.top + rect.height / 2 : 40;
+    const maxRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      flushSync(() => setTheme(next));
+    });
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${maxRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 650,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
   };
 
   const [loading, setLoading] = useState(true);
-
-  if (loading) {
-    return <Loading onLoadingComplete={() => setLoading(false)} />;
-  }
+  const [view, setView] = useState('scroll'); // 'scroll' | 'bento'
 
   return (
     <div className="app-shell" data-theme={theme}>
+      {/* Page mounts behind the intro so the curtain reveals a living site */}
+      {loading && <Loading onLoadingComplete={() => setLoading(false)} />}
+      <SmoothScroll />
+      <ScrollProgress />
       <FloatingOrbs />
       <Navbar
-        isMenuOpen={isMenuOpen}
-        toggleMenu={toggleMenu}
         activeLink={activeLink}
         setActiveLink={setActiveLink}
         theme={theme}
         toggleTheme={toggleTheme}
       />
-      <div
-        className={cursor.visible ? 'custom-cursor custom-cursor--visible' : 'custom-cursor'}
-        style={{ left: `${cursor.x}px`, top: `${cursor.y}px` }}
-        aria-hidden
-      >
-      </div>
-      <Home />
-      <div className="container">
-        <div className="sections-stack">
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Honors />
-          <Contact />
-        </div>
-        <Footer />
-      </div>
+      <SmoothCursor />
+      {view === 'bento' ? (
+        <BentoView theme={theme} onExit={() => setView('scroll')} />
+      ) : (
+        <>
+          <Home onOpenIndex={() => setView('bento')} />
+          <div className="container">
+            <div className="sections-stack">
+              <About />
+              <Experience />
+              <Projects />
+              <Skills />
+              <Honors />
+              <Contact />
+            </div>
+            <Footer />
+          </div>
+        </>
+      )}
     </div>
   );
 }

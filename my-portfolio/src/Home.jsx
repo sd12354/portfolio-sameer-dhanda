@@ -1,6 +1,12 @@
 import './Home.css';
-import { HiArrowRight, HiChevronDown } from 'react-icons/hi';
-import { motion, useReducedMotion } from 'motion/react';
+import { useRef } from 'react';
+import { HiArrowRight, HiChevronDown, HiOutlineViewGrid } from 'react-icons/hi';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import AuroraText from './magicui/AuroraText';
+import WordRotate from './magicui/WordRotate';
+import Meteors from './magicui/Meteors';
+import ShimmerButton from './magicui/ShimmerButton';
+import TypingAnimation from './magicui/TypingAnimation';
 import {
   FaAws,
   FaGithub,
@@ -39,12 +45,33 @@ const techIcons = [
   { Icon: SiSwift, label: 'Swift' },
 ];
 
-function Home() {
+function Home({ onOpenIndex }) {
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef(null);
+
+  // Parallax exit: as the hero scrolls away its content sinks slower than the
+  // page, fades, and softens — the mesh drifts at yet another rate for depth.
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const meshY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const parallaxStyle = reduceMotion
+    ? undefined
+    : { y: contentY, opacity: contentOpacity, scale: contentScale };
 
   return (
-    <section id="home" className="hero">
-      <div className="hero-mesh" aria-hidden />
+    <section id="home" className="hero" ref={heroRef}>
+      <motion.div
+        className="hero-mesh"
+        style={reduceMotion ? undefined : { y: meshY }}
+        aria-hidden
+      />
+      <Meteors number={18} />
+      <motion.div className="hero-parallax" style={parallaxStyle}>
       <motion.div
         className="hero-content"
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -57,7 +84,7 @@ function Home() {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Sameer Dhanda
+          <AuroraText>Sameer Dhanda</AuroraText>
         </motion.h1>
         <motion.p
           className="hero-role"
@@ -65,7 +92,14 @@ function Home() {
           animate={reduceMotion ? undefined : { opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Software Engineer
+          <WordRotate
+            words={[
+              'Software Engineer',
+              'Full-Stack Developer',
+              'iOS Developer',
+              'Creative Technologist',
+            ]}
+          />
         </motion.p>
         <motion.p
           className="hero-location"
@@ -81,21 +115,32 @@ function Home() {
           animate={reduceMotion ? undefined : { opacity: 1 }}
           transition={{ delay: 0.36, duration: 0.5 }}
         >
-          Building clean software and solving hard problems.
+          <TypingAnimation delay={900}>
+            Building clean software and solving hard problems.
+          </TypingAnimation>
         </motion.p>
         <div className="hero-actions">
-          <motion.a
-            href="#projects"
-            className="btn btn-primary"
+          <ShimmerButton href="#projects">
+            View My Work
+            <HiArrowRight className="btn-icon-end" aria-hidden />
+          </ShimmerButton>
+          <motion.button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onOpenIndex}
             whileHover={reduceMotion ? undefined : { y: -2, scale: 1.01 }}
             whileTap={reduceMotion ? undefined : { scale: 0.98 }}
           >
-            View My Work
-            <HiArrowRight className="btn-icon-end" aria-hidden />
-          </motion.a>
+            <HiOutlineViewGrid className="btn-icon-start" aria-hidden />
+            Bento View
+          </motion.button>
         </div>
-        <div className="hero-tech-marquee" aria-label="Technologies">
-          <div className="hero-tech-track">
+        <div
+          className="hero-tech-marquee"
+          role="img"
+          aria-label={`Technologies: ${techIcons.map(({ label }) => label).join(', ')}`}
+        >
+          <div className="hero-tech-track" aria-hidden="true">
             {techIcons.map(({ Icon, label }) => (
               <span key={`set-a-${label}`} className="hero-tech-item" title={label}>
                 <Icon aria-hidden />
@@ -108,6 +153,7 @@ function Home() {
             ))}
           </div>
         </div>
+      </motion.div>
       </motion.div>
       <a href="#about" className="hero-scroll-hint" aria-label="Scroll to about">
         <HiChevronDown />

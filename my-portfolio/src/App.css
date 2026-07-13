@@ -33,8 +33,22 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  -webkit-user-select: none;
-  user-select: none;
+}
+
+/* Theme toggle: circular reveal driven by the View Transitions API.
+   Default crossfade is disabled; the new snapshot is clip-path animated from JS. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
 }
 
 body {
@@ -42,64 +56,39 @@ body {
   font-family: var(--font-sans);
   background: var(--surface-muted);
   color: var(--text-body);
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -webkit-touch-callout: none;
 }
 
-* {
-  scroll-behavior: smooth;
+/* Lenis smooth scroll (scroll-behavior must stay native so Lenis can animate it) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Visible focus for keyboard users, everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .app-shell {
   min-height: 100vh;
   position: relative;
   background: var(--surface-muted);
-}
-
-.custom-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 2rem;
-  height: 2rem;
-  margin-left: -1rem;
-  margin-top: -1rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(96, 165, 250, 0.2);
-  border: 1px solid rgba(96, 165, 250, 0.45);
-  color: transparent;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
-  pointer-events: none;
-  z-index: 3000;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 120ms ease, transform 120ms ease;
-}
-
-.custom-cursor--visible {
-  opacity: 1;
-  transform: scale(1);
-  animation: cursor-pulse 1.25s ease-in-out infinite;
-}
-
-@keyframes cursor-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 0 0 rgba(96, 165, 250, 0.35),
-      0 8px 24px rgba(37, 99, 235, 0.2);
-  }
-  50% {
-    transform: scale(1.18);
-    box-shadow:
-      0 0 0 10px rgba(96, 165, 250, 0),
-      0 10px 26px rgba(37, 99, 235, 0.24);
-  }
 }
 
 .container {
@@ -150,18 +139,18 @@ body {
   }
 }
 
-@media (hover: none), (pointer: coarse) {
-  .custom-cursor {
-    display: none;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
+/* Only replace the native cursor for users who haven't asked for reduced motion */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   body,
   a,
   button {
     cursor: none;
   }
+}
+
+/* Anchor targets land below the floating navbar instead of underneath it */
+section[id] {
+  scroll-margin-top: 92px;
 }
 
 .page-section {

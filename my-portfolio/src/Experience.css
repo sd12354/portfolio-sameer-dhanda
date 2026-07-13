@@ -39,6 +39,22 @@
   border-radius: 1px;
 }
 
+/* Scroll-driven overlay: draws down the track as the section scrolls through */
+.experience-line--progress {
+  background: linear-gradient(180deg, var(--accent), #a78bfa);
+  transform-origin: top;
+  transform: scaleY(0);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.45);
+}
+
+[data-theme='dark'] .experience-line {
+  background: rgba(148, 163, 184, 0.18);
+}
+
+[data-theme='dark'] .experience-line--progress {
+  background: linear-gradient(180deg, #60a5fa, #a78bfa);
+}
+
 .experience-list {
   list-style: none;
   margin: 0;
@@ -81,7 +97,7 @@
   height: 12px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid #fff;
+  border: 2px solid var(--surface);
   box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
 }
 
@@ -111,8 +127,7 @@
 
 .experience-card-logo {
   display: block;
-  height: auto;
-  max-height: 2.75rem;
+  height: 2.75rem;
   width: auto;
   max-width: 11rem;
   object-fit: contain;
@@ -121,13 +136,19 @@
 }
 
 .experience-card-logo--nba {
-  max-height: 3.25rem;
+  height: 3.25rem;
   max-width: 12rem;
 }
 
 .experience-card-logo--altoida {
-  max-height: 1.95rem;
+  height: 1.95rem;
   max-width: 7.5rem;
+}
+
+.experience-card-logo--baobab {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 10px;
 }
 
 .experience-card-logo-link {
@@ -235,17 +256,22 @@
   }
 
   .experience-card-logo {
-    max-height: 2.4rem;
+    height: 2.4rem;
     max-width: 10rem;
   }
 
   .experience-card-logo--nba {
-    max-height: 2.85rem;
+    height: 2.85rem;
     max-width: 11rem;
   }
 
   .experience-card-logo--altoida {
-    max-height: 1.75rem;
+    height: 1.75rem;
     max-width: 7rem;
+  }
+
+  .experience-card-logo--baobab {
+    height: 2.6rem;
+    width: 2.6rem;
   }
 }
