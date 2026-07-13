@@ -327,8 +327,10 @@ export default function BentoView({ onExit, theme }) {
           rel="noopener noreferrer"
           {...stagger(1)}
         >
-          <span className="bento-status-dot" aria-hidden />
-          <span className="bento-card-eyebrow">Currently</span>
+          <span className="bento-card-eyebrow bento-current-eyebrow">
+            <span className="bento-status-dot" aria-hidden />
+            Currently
+          </span>
           <div className="bento-current-row">
             <img src="/baobab-logo.png" alt="Baobab" className="bento-current-logo" />
             <div>
